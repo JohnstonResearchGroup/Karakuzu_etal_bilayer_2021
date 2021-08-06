@@ -2,7 +2,7 @@
 
 Latex files, data, and plot scripts of the manuscript "Superconductivity in the bilayer Hubbard model: Are two Fermi surfaces better than one?"
 
-Reference: TBD
+Reference: Submitted to Physical Review B. Preprint: arXiv:2107.13996 (2021). 
 
 Title: Superconductivity in the bilayer Hubbard model: Are two Fermi surfaces better than one?
 
