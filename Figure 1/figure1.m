@@ -10,12 +10,13 @@ figure('Renderer', 'painters', 'Position', [10 10 900 400])
 set(gcf,'color','white')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subplot('position',[0.1,0.15,0.28,0.8]); hold on;
-tperp = 1;
+tperp = 2;
+tperpp = 0;
 mu = 1;
-Ek1 = 2*t*(cos(K)+cos(K)) + 2*tperp - mu;
-Ek2 = 2*t*(cos(K)+cos(K)) - 2*tperp - mu;
-FS1 = 2*t*(cos(KX)+cos(KY)) + 2*tperp - mu;
-FS2 = 2*t*(cos(KX)+cos(KY)) - 2*tperp - mu;
+Ek1 = 2*(t+tperpp)*(cos(K)+cos(K)) + tperp - mu;
+Ek2 = 2*(t-tperpp)*(cos(K)+cos(K)) - tperp - mu;
+FS1 = 2*(t+tperpp)*(cos(KX)+cos(KY)) + tperp - mu;
+FS2 = 2*(t-tperpp)*(cos(KX)+cos(KY)) - tperp - mu;
 plot(K/pi,Ek1,'-k','LineWidth',1);
 plot(K/pi,Ek2,'-r','LineWidth',1);
 plot(K/pi,zeros(size(K)),'--k','LineWidth',0.5);
@@ -23,8 +24,8 @@ ylabel('$\epsilon_\pm({\bf k})/t$','FontSize',30,'Interpreter','latex')
 set(gca,'FontSize',25,'XTick',[0:0.25:1],'YTick',[-12:4:12],'LineWidth',1,'FontName','Times')
 xticklabels({' \Gamma',' ',' ',' ','M '})
 axis([0,1,-12,12])
-string1 = ['$t_\perp = 1, t^\prime_\perp = 0$'];
-string2 = ['$\mu = 1$     '];
+string1 = ['$t_\perp = 2t, t^\prime_\perp = 0$'];
+string2 = ['$\mu = t$     '];
 text(0.04,10,'(b)','FontSize',25,'Interpreter','latex')
 text(0.04,-8.5,string1,'FontSize',25,'Interpreter','latex')
 text(0.04,-10.5,string2,'FontSize',25,'Interpreter','latex')
@@ -44,12 +45,13 @@ set(gca,'FontSize',25,'XTick',[-1:1:-1],'YTick',[-1:1:-1],'LineWidth',1)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subplot('position',[0.4,0.15,0.28,0.8]); hold on;
-tperp = 2;
+tperp = 4;
+tperpp = 0;
 mu = 1;
-Ek1 = 2*t*(cos(K)+cos(K)) + 2*tperp - mu;
-Ek2 = 2*t*(cos(K)+cos(K)) - 2*tperp - mu;
-FS1 = 2*t*(cos(KX)+cos(KY)) + 2*tperp - mu;
-FS2 = 2*t*(cos(KX)+cos(KY)) - 2*tperp - mu;
+Ek1 = 2*t*(cos(K)+cos(K)) + tperp - mu;
+Ek2 = 2*t*(cos(K)+cos(K)) - tperp - mu;
+FS1 = 2*t*(cos(KX)+cos(KY)) + tperp - mu;
+FS2 = 2*t*(cos(KX)+cos(KY)) - tperp - mu;
 plot(K/pi,Ek1,'-k','LineWidth',1);
 plot(K/pi,Ek2,'-r','LineWidth',1);
 plot(K/pi,zeros(size(K)),'--k','LineWidth',0.5);
@@ -58,8 +60,8 @@ xticklabels({' \Gamma',' ',' ',' ','M '})
 yticklabels({' ',' ',' ',' ',' ',' ',' '})
 axis([0,1,-12,12])
 box on;
-string1 = ['$t_\perp = 2, t^\prime_\perp = 0$'];
-string2 = ['$\mu = 1$     '];
+string1 = ['$t_\perp = 4t, t^\prime_\perp = 0$'];
+string2 = ['$\mu = t$     '];
 text(0.04,10,'(c)','FontSize',25,'Interpreter','latex')
 text(0.04,-8.5,string1,'FontSize',25,'Interpreter','latex')
 text(0.04,-10.5,string2,'FontSize',25,'Interpreter','latex')
@@ -73,13 +75,13 @@ set(gca,'FontSize',25,'XTick',[-1:1:-1],'YTick',[-1:1:-1],'LineWidth',1)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subplot('position',[0.7,0.15,0.28,0.8]); hold on;
-tperp = 2;
+tperp = 4;
 tperpp = 0.75;
 mu = 1;
-Ek1 = 2*(t+tperpp)*(cos(K)+cos(K)) + 2*tperp - mu;
-Ek2 = 2*(t-tperpp)*(cos(K)+cos(K)) - 2*tperp - mu;
-FS1 = 2*(t+tperpp)*(cos(KX)+cos(KY)) + 2*tperp - mu;
-FS2 = 2*(t-tperpp)*(cos(KX)+cos(KY)) - 2*tperp - mu;
+Ek1 = 2*(t+tperpp)*(cos(K)+cos(K)) + tperp - mu;
+Ek2 = 2*(t-tperpp)*(cos(K)+cos(K)) - tperp - mu;
+FS1 = 2*(t+tperpp)*(cos(KX)+cos(KY)) + tperp - mu;
+FS2 = 2*(t-tperpp)*(cos(KX)+cos(KY)) - tperp - mu;
 plot(K/pi,Ek1,'-k','LineWidth',1);
 plot(K/pi,Ek2,'-r','LineWidth',1);
 plot(K/pi,zeros(size(K)),'--k','LineWidth',0.5);
@@ -88,8 +90,8 @@ xticklabels({' \Gamma',' ',' ',' ','M '})
 yticklabels({' ',' ',' ',' ',' ',' ',' '})
 axis([0,1,-12,12])
 box on;
-string1 = ['$t_\perp = 2, t^\prime_\perp = 3/4$'];
-string2 = ['$\mu = 1$     '];
+string1 = ['$t_\perp = 4t, t^\prime_\perp = 3t/4$'];
+string2 = ['$\mu = t$     '];
 text(0.04,10,'(d)','FontSize',25,'Interpreter','latex', 'BackgroundColor','white')
 text(0.04,-8.5,string1,'FontSize',25,'Interpreter','latex')
 text(0.04,-10.5,string2,'FontSize',25,'Interpreter','latex')
