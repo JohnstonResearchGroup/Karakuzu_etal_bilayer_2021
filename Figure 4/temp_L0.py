@@ -70,19 +70,19 @@ colors = prop_cycle.by_key()['color']
 
 
 fig1,ax1 = plt.subplots(figsize=(8,6))
-ax1.plot(omega2,1-n2[:,1],color=colors[0],label=r"$n=1.05, t_{\perp}=2.3, t_{\perp}^{\prime}=0.0$",marker='o', linewidth=2)
+ax1.plot(omega2,1-n2[:,1],color=colors[0],label=r"$n=1.05, t_{\perp}=2.3t, t_{\perp}^{\prime}=0.0$",marker='o', linewidth=2)
 ax1.plot(xdata2,ydata2,color=colors[0],linestyle='dashed',linewidth=2)
-ax1.plot(omega1,1-n1[:,1],color=colors[1],label=r"$n=1.10, t_{\perp}=2.3, t_{\perp}^{\prime}=0.0$",marker='^', linewidth=2)
+ax1.plot(omega1,1-n1[:,1],color=colors[1],label=r"$n=1.10, t_{\perp}=2.3t, t_{\perp}^{\prime}=0.0$",marker='^', linewidth=2)
 ax1.plot(xdata1,ydata1,color=colors[1],linestyle='dashed',linewidth=2)
-ax1.plot(omega3,1-n3[:,1],color=colors[2],label=r"$n=1.15, t_{\perp}=2.3, t_{\perp}^{\prime}=0.0$",marker='s', linewidth=2)
+ax1.plot(omega3,1-n3[:,1],color=colors[2],label=r"$n=1.15, t_{\perp}=2.3t, t_{\perp}^{\prime}=0.0$",marker='s', linewidth=2)
 ax1.plot(xdata3,ydata3,color=colors[2],linestyle='dashed',linewidth=2)
-ax1.plot(omega0,1-n0[:,1],color=colors[3],label=r"$n=1.15, t_{\perp}=2.8, t_{\perp}^{\prime}=0.0$",marker='p', linewidth=2)
+ax1.plot(omega0,1-n0[:,1],color=colors[3],label=r"$n=1.15, t_{\perp}=2.8t, t_{\perp}^{\prime}=0.0$",marker='p', linewidth=2)
 
 
 
 
-ax1.set_ylabel(r'$ 1 - \lambda_0$',fontsize=24)
-ax1.set_xlabel(r'$T$',fontsize=24)
+ax1.set_ylabel(r'$ 1 - \lambda_{s^\pm}$',fontsize=24)
+ax1.set_xlabel(r'$T/t$',fontsize=24)
 ax1.yaxis.tick_left() 
 ax1.yaxis.set_ticks_position('both')
 
