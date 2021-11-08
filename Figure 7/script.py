@@ -26,7 +26,7 @@ ax1.plot(1./b,data_n0pt9_tp2pt3, color=colors[1],label=r"$n=1.10,t_{\perp}=2.3t,
 ax1.plot(1./b,data_n0pt85_tp2pt3, color=colors[2],label=r"$n=1.15,t_{\perp}=2.3t,t_{\perp}^{\prime}=0.0$",marker='p',linestyle='dashed',linewidth=2)
 ax1.plot(1./b,data_n0pt85_tp2pt8, color=colors[3],label=r"$n=1.15,t_{\perp}=2.8t,t_{\perp}^{\prime}=0.0$",marker='p',linestyle='dashed',linewidth=2)
 ax1.set_xlabel(r'$T/t$',fontsize=18)
-ax1.set_ylabel(r"$G(\beta/2)$",fontsize=18)
+ax1.set_ylabel(r"$\bar{G}({\bf K}=(0,0,\pi), \tau=\beta/2)$",fontsize=18)
 ax1.tick_params(labelsize=18)
 ax1.set_ylim([0.0,0.50])
 
