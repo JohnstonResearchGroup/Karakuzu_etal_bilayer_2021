@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{xcolor}
+\bibliographystyle{apsrev4-1}
 \usepackage[colorlinks = true,
             linkcolor = blue,
             urlcolor  = red,
@@ -34,22 +35,23 @@
 \newcommand{\umesh}[1]{\textcolor{red}{#1}}
 
 \begin{document}
-\title{Superconductivity in the bilayer Hubbard model: Are two Fermi surfaces better than one?}
+\title{Superconductivity in the bilayer Hubbard model: Two Fermi surfaces are better than one}
 \date{\today}
 
 
 
 \author{Seher Karakuzu}
-\affiliation{Computational Sciences and Engineering Division, Oak Ridge National Laboratory, Oak Ridge, Tennessee 37831-6164, USA}
+\affiliation{Computational Sciences and Engineering Division, Oak Ridge National Laboratory, Oak Ridge, Tennessee 37831-6164, USA\looseness=-1}
 
 \author{Steven Johnston}
 \affiliation{Department of Physics and Astronomy, The University of Tennessee, Knoxville, Tennessee 37966, USA}
+\affiliation{Institute for Advanced Materials and Manufacturing, University of Tennessee, Knoxville, TN 37996, USA\looseness=-1}
 
 \author{Thomas A. Maier}
 \affiliation{Computational Sciences and Engineering Division, Oak Ridge National Laboratory, Oak Ridge, Tennessee 37831-6164, USA}
 
 \begin{abstract}
-Fully occupied or unoccupied bands in a solid are often considered inert and irrelevant to a material's low-energy properties. But the discovery of enhanced superconductivity in heavily electron-doped FeSe-derived superconductors poses questions about the possible role of incipient bands (those laying close to but not crossing the Fermi level) in pairing. To answer this question, researchers have studied pairing correlations in the bilayer Hubbard model, which has an incipient band for large interlayer hopping $t_\perp$, using many-body perturbation theory and variational methods. They have generally found that superconductivity is enhanced as one of the bands approaches the Liftshiz transition and even when it becomes incipient. Here, we address this question using the nonperturbative quantum Monte Carlo (QMC) dynamical cluster approximation (DCA) to study the bilayer Hubbard model's pairing correlations. We find that the model has robust $s_\pm$ pairing correlations in the large $t_\perp$ limit, which can become stronger as one band is made incipient. While this behavior is linked to changes in the effective interaction, we further find that it is  counteracted by a suppression of the intrinsic pair-field susceptibility and does not translate to an increased $T_c$. Our results demonstrate that the highest achievable transition temperatures in the bilayer Hubbard model occur when the system has two bands crossing the Fermi level.  
+Fully occupied or unoccupied bands in a solid are often considered inert and irrelevant to a material's low-energy properties. But the discovery of enhanced superconductivity in heavily electron-doped FeSe-derived superconductors poses questions about the possible role of incipient bands (those laying close to but not crossing the Fermi level) in pairing. To answer this question, researchers have studied pairing correlations in the bilayer Hubbard model, which has an incipient band for large interlayer hopping $t_\perp$, using many-body perturbation theory and variational methods. They have generally found that superconductivity is enhanced as one of the bands approaches the Lifshitz transition and even when it becomes incipient. Here, we address this question using the nonperturbative quantum Monte Carlo (QMC) dynamical cluster approximation (DCA) to study the bilayer Hubbard model's pairing correlations. We find that the model has robust $s_\pm$ pairing correlations in the large $t_\perp$ limit, which can become stronger as one band is made incipient. While this behavior is linked to changes in the effective interaction, we further find that it is  counteracted by a suppression of the intrinsic pair-field susceptibility and does not translate to an increased $T_c$. Our results demonstrate that the highest achievable transition temperatures in the bilayer Hubbard model occur when the system has two bands crossing the Fermi level.
 \end{abstract}
 \maketitle
 
@@ -58,12 +60,6 @@ To harness the full potential of superconductors for technological applications,
 
 Bulk FeSe is an unconventional superconductor with $T_c\approx 8$ K at ambient pressure~\cite{Hsu14262}. Its electronic structure in bulk form resembles other Fe-based superconductors with a set of hole-like bands crossing the Fermi energy $E_\mathrm{F}$ at the $\Gamma$ point [${\bf k} = (0,0)$] and another set of electron-like bands crossing at the $M$-point [${\bf k} = (\pi/a,\pi/a)$, two-Fe unit cell notation]. The system can be electron-doped by intercalating alkali atoms \cite{GuoPRB2010, DingNatCommun2013} or more complex molecules \cite{NOJI20148, BurrardLucasNatMat2013, Krzton_Maziopa_2012, Sun2015} into the van der Waals gap between the layers. This process can induce a Lifshitz transition whereby the hole-like bands sink below $E_\mathrm{F}$, leaving only the electron-like Fermi surface pockets at the zone corner. At the same time, $T_c$ increases to $\approx 45$ K. Growing monolayers of FeSe on oxide substrates like SrTiO$_3$, BaTiO$_3$, or TiO$_2$ also electron dopes the system~\cite{Liu2012} but one can achieve $T_c \sim 55-75$~K in this case, even for electron concentrations comparable to those realized in FeSe intercalates~\cite{WangCPL2012, Liu2012, He2013, Ge2015}. 
 
-On the one hand, the observation of enhanced superconductivity in FeSe monolayers on oxide substrates indicates that the substrate contributes to raising $T_c$ in FeSe monolayers \cite{LeeNature2014, Lee2015, Rademaker2016, SongNatureCommun2019, RademakerEnhanced2021}. This possibility has renewed efforts towards engineering unconventional superconductivity in artificial heterostructures, and interfaces \cite{LeeNature2014, CohHeterostructure, PengNatureCommun2014}. On the other hand, the increased $T_c$ found in the FeSe intercalates provides compelling evidence that electron doping and the associated changes in the electronic band structure also play a critical role in establishing high-$T_c$ values in these materials. While both aspects are interesting in their own right, here we focus our attention on the latter. 
-
-An early and influential picture for superconductivity in the iron-based superconductors \cite{Mazin2008} was built around the notion that spin fluctuations meditate electron pairing, where strong nesting between electron and hole pockets leads to an $s^\pm$ gap symmetry~\cite{Kuroki2008, Mazin2008, Hirschfeld_2011}. At face value, the existence of a system with an \emph{increased} $T_c$ but with its hole-like bands laying below $E_\mathrm{F}$ (i.e., an incipient band\footnote{The term ``incipient band'' seems to have multiple usages in the literature. Here, we use the term to refer to a band that is full (empty) but whose maximum (minimum) is close to the Fermi energy.}) challenges this picture. These observations have led to an effort to understand how bands close to \cite{Hirschfeld_2011, PhysRevB.93.155159, PhysRevB.91.161108, BangNJP2014, ChenPRB2015, Mishra2016, LinscheidPRL2016, KurokiFlex2020, KurokiVMC2020, Maier2019, RademakerEnhanced2021} (or even far from \cite{PhysRevB.97.060501}) the Fermi energy might affect superconductivity. 
-
-While researchers have studied several models for incipient band systems to date, the focus of this work is on the bilayer Hubbard model. It is a simple two-band model whose Fermi surface can be tuned continuously between having two disconnected sheets to a system with a single sheet and an incipient band, in analogy to the FeSe family~\cite{Maier2011}. Moreover, the model retains only the on-site Hubbard interactions, making it easier to solve using nonperturbative methods like quantum Monte Carlo (QMC)~\cite{Maier2011, Maier2019, PelliciariRIXS2020, KurokiVMC2020},  where interorbital interactions generally produce severe Fermion sign problems.
-
 \begin{figure*}[t]
     \centering
     \includegraphics[width=\textwidth]{./Bilayer_Sketch.png}
@@ -71,6 +67,12 @@ While researchers have studied several models for incipient band systems to date
     surface(s) for each parameter set.}
     \label{fig:bilayer_sketch}
 \end{figure*}
+
+On the one hand, the observation of enhanced superconductivity in FeSe monolayers on oxide substrates indicates that the substrate contributes to raising $T_c$ in FeSe monolayers \cite{LeeNature2014, Lee2015, Rademaker2016, SongNatureCommun2019, RademakerEnhanced2021}. This possibility has renewed efforts towards engineering unconventional superconductivity in artificial heterostructures, and interfaces \cite{LeeNature2014, CohHeterostructure, PengNatureCommun2014}. On the other hand, the increased $T_c$ found in the FeSe intercalates provides compelling evidence that electron doping and the associated changes in the electronic band structure also play a critical role in establishing high-$T_c$ values in these materials. While both aspects are interesting in their own right, here we focus our attention on the latter. 
+
+An early and influential picture for superconductivity in the iron-based superconductors \cite{Mazin2008} was built around the notion that spin fluctuations mediate electron pairing, where strong nesting between electron and hole pockets leads to an $s^\pm$ gap symmetry~\cite{Kuroki2008, Mazin2008, Hirschfeld_2011}. At face value, the existence of a system with an \emph{increased} $T_c$ but with its hole-like bands laying below $E_\mathrm{F}$ (i.e., an incipient band\footnote{The term ``incipient band'' seems to have multiple usages in the literature. Here, we use the term to refer to a band that is full (empty) but whose maximum (minimum) is close to the Fermi energy.}) challenges this picture. These observations have led to an effort to understand how bands close to \cite{Hirschfeld_2011, PhysRevB.93.155159, PhysRevB.91.161108, BangNJP2014, ChenPRB2015, Mishra2016, LinscheidPRL2016, KurokiFlex2020, KurokiVMC2020, Maier2019, RademakerEnhanced2021} (or even far from \cite{PhysRevB.97.060501}) the Fermi energy might affect superconductivity. 
+
+While researchers have studied several models for incipient band systems to date, the focus of this work is on the bilayer Hubbard model. It is a simple two-band model whose Fermi surface can be tuned continuously between having two disconnected sheets to a system with a single sheet and an incipient band, in analogy to the FeSe family~\cite{Maier2011}. Moreover, the model retains only the on-site Hubbard interactions, making it easier to solve using nonperturbative methods like quantum Monte Carlo (QMC)~\cite{Maier2011, Maier2019, PelliciariRIXS2020, KurokiVMC2020},  where interorbital interactions generally produce severe Fermion sign problems.
 
 Remarkably, recent weak coupling calculations for this model within a fluctuation exchange (FLEX) approximation have found that superconductivity is strongly enhanced when one of the bands is close to but still below the Fermi energy~\cite{KurokiFlex2020}. The authors attributed this enhancement to a suppression of the low-energy spin fluctuations due to the incipient nature of the hole band and the associated transfer of spectral weight to an energy range optimal for pairing. Later, the same group investigated this question in the strong-coupling regime using variational Monte Carlo (VMC) calculations and found that the zero-temperature pairing correlations are more robust in a regime where one of the bands is incipient~\cite{KurokiVMC2020}, consistent with their earlier work. 
 
@@ -97,7 +99,7 @@ and
   {\cal H}_{\cal U} =  U \sum_{i,\alpha} n_{i,\alpha,\uparrow} n_{i,\alpha,\downarrow}.
   \label{eq:HU}
 \end{equation}  
-Here, $c^\dag_{i,\alpha,\sigma}$ ($c^\pdag_{i,\alpha,\sigma}$) creates (annihilates) a spin $\sigma$ ($=\uparrow,\downarrow$) electron in the unit cell $i$ and layer $\alpha$ ($=1,2$), $t_{i,j}$ and $t^\perp_{i,j}$ are the intra- and interlayer hopping integrals, respectively,  $n^{\phantom\dagger}_{i,\alpha,\sigma} = c^\dag_{i,\alpha,\sigma} c^{\phantom\dagger}_{i,\alpha,\sigma}$ is the number operator, and $U$ is the Hubbard interaction, which acts only between electrons in the same layer. The average particle number per orbital $n = \frac{1}{2}\sum_{i,\alpha,\sigma}\langle n_{i,\alpha,\sigma}\rangle$ is controlled by the chemical potential term $\mu$. Throughout, we set the intralayer hopping  $t_{i,j} = t$ for in-plane nearest neighbors and $t_{i,j} = 0$ otherwise, and set $t = 1$ as our unit of energy. For the interlayer hopping, we set $t^\perp_{i,j} = t_\perp$ for $i = j$ and $t^{\perp}_{i,j} = t_\perp^{\prime}$ for next-nearest inter-plane neighbors $\langle i,~j\rangle$, and zero otherwise, as sketched in Fig.~\ref{fig:bilayer_sketch}a. The majority of our results for $t_\perp^\prime = 0$ are obtained on $N = 4\times 4\times 2$ clusters, unless otherwise stated. We have found that $t^\prime_\perp \ne 0$ produces a more significant Fermion sign problem and so most of results for this case were obtained on $2\times 2\times 2$ clusters, unless otherwise stated. 
+Here, $c^\dag_{i,\alpha,\sigma}$ ($c^\pdag_{i,\alpha,\sigma}$) creates (annihilates) a spin $\sigma$ ($=\uparrow,\downarrow$) electron in unit cell $i$ and layer $\alpha$ ($=1,2$), $t_{i,j}$ and $t^\perp_{i,j}$ are the intra- and interlayer hopping integrals, respectively,  $n^{\phantom\dagger}_{i,\alpha,\sigma} = c^\dag_{i,\alpha,\sigma} c^{\phantom\dagger}_{i,\alpha,\sigma}$ is the number operator, and $U$ is the Hubbard interaction, which acts only between electrons in the same layer. The average particle number per orbital $n = \frac{1}{2}\sum_{i,\alpha,\sigma}\langle n_{i,\alpha,\sigma}\rangle$ is controlled by the chemical potential term $\mu$. Throughout, we set the intralayer hopping  $t_{i,j} = t$ for in-plane nearest neighbors and $t_{i,j} = 0$ otherwise, and set $t = 1$ as our unit of energy. For the interlayer hopping, we set $t^\perp_{i,j} = t_\perp$ for $i = j$ and $t^{\perp}_{i,j} = t_\perp^{\prime}$ for next-nearest inter-plane neighbors $\langle i,~j\rangle$, and zero otherwise, as sketched in Fig.~\ref{fig:bilayer_sketch}a. The majority of our results for $t_\perp^\prime = 0$ are obtained on $N = 4\times 4\times 2$ clusters, unless otherwise stated. We have found that $t^\prime_\perp \ne 0$ produces a more significant Fermion sign problem and so most of results for this case were obtained on $2\times 2\times 2$ clusters, unless otherwise stated. 
 
 \subsection{Method Details}
 We study the bilayer Hamiltonian in Eq.~(\ref{eq:Hmodel}) using the DCA method~\cite{Jarrell2001, Maier_Review} with a 
@@ -111,9 +113,9 @@ To investigate the strength of the pairing correlations and the symmetry of the 
     \lambda_\nu(T) \phi_\nu(k) = - \frac{T}{N} \sum_{k^\prime} \Gamma(k,k^\prime) G(k^\prime) G(-k^\prime) \phi_\nu(k^\prime).
     \label{eq:BSEeq}
 \end{equation}
-Here, $k\equiv(k_x,k_y,k_z,w_n)$ with $w_n=(2n+1)\pi T$ a Fermion Matsubara frequency, $G(k)$ is the fully dressed single particle propagator, and $\Gamma(k,k^\prime)$ is the particle-particle irreducible vertex function. The system undergoes a superconducting transition at $T=T_c$ when the leading eigenvalue $\lambda_0(T_c) = 1$ and the symmetry of the superconducting state is determined from the momentum and frequency structure of the corresponding eigenfunction $\phi_0(k)$.
+Here, $k\equiv(k_x,k_y,k_z,\omega_n)$ with $\omega_n=(2n+1)\pi T$ a Fermion Matsubara frequency, $G(k)$ is the fully dressed single particle propagator, and $\Gamma(k,k^\prime)$ is the particle-particle irreducible vertex function. The system undergoes a superconducting transition at $T=T_c$ when the leading eigenvalue $\lambda_0(T_c) = 1$ and the symmetry of the superconducting state is determined from the momentum and frequency structure of the corresponding eigenfunction $\phi_0(k)$.
 
-To help understand the evolution of the pairing correlations with model parameters, we can define the intrinsic (non-interacting dressed) pair-field susceptibility as in Ref. \citenum{PhysRevResearch.2.033132} 
+To help understand the evolution of the pairing correlations with model parameters, we can define the intrinsic (noninteracting dressed) pair-field susceptibility as in Ref. \citenum{PhysRevResearch.2.033132} 
 by projecting onto the leading eigenfunction $\phi_0(k)$ 
 \begin{equation}\label{eq:P0}
     P_0(T) = \frac{T}{N} \sum_k \phi_0^2(k) G(k) G(-k).
@@ -129,7 +131,7 @@ We also investigate the spin correlations in the system by calculating the dynam
 \end{equation}
 where ${\cal T}_\tau$ is the time ordering operator, and  $S_{i,\alpha}^{z}(\tau)= \frac{1}{2}\left[n_{i,\alpha,\uparrow}(\tau)-n_{i,\alpha,\downarrow}(\tau)\right]$ is the $z$-component of the spin on orbital (layer) $\alpha$ at site $\mathbf{r}_i$ at time $\tau$. A Fourier transform of the real space spin susceptibility will result in the momentum dependent zero frequency susceptibility 
 \begin{equation}\label{eq:spinsus}
-    \chi_{s}(\mathbf{Q}) = \sum_{\mathbf{r},\alpha,\beta} \int\limits_0^\beta d\tau\, \chi_{\alpha,\beta}^{s}(\mathbf{r},\tau) e^{i\mathbf{Q_{\parallel}}\cdot \mathbf{r}} e^{iQ_{\perp}(r_{z,\alpha}-r_{z,\beta})} ,
+    \chi_{s}(\mathbf{Q}) = \sum_{\mathbf{r},\alpha,\beta} \int\limits_0^\beta d\tau\, \chi^{\alpha,\beta}_{s}(\mathbf{r},\tau) e^{i\mathbf{Q_{\parallel}}\cdot \mathbf{r}} e^{iQ_{\perp}(r_{z,\alpha}-r_{z,\beta})} ,
 \end{equation}
 where $\mathbf{Q} = (\mathbf{Q}_{\parallel}, Q_{\perp}) = (Q_x,Q_y, Q_z)$ is the scattering wavevector and $r_{z,\alpha} = 0,~1$ for orbitals in layers $\alpha = 0,~1$.
 
@@ -142,7 +144,7 @@ We first present the effect of Hamiltonian parameters $t^{\phantom\prime}_\perp$
 \end{equation}
 Here, $a=1$ is the in-plane lattice constant and our unit of length. The $(+)$ and $(-)$ combinations can also be viewed as Bloch states of a one-band model with $k_z = 0$ and $\pi$, respectively. We will use this notation for the remainder of this work. 
 
-The noninteracting band structure for different choices of interlayer hopping $t^{\phantom\prime}_\perp$ and $t_\perp^\prime$ and $\mu = t$ are plotted in Fig.~\ref{fig:bilayer_sketch}(b)-(d). Increasing the value of $t_\perp$ controls the energy separation between the bands, as shown in Figs.~\ref{fig:bilayer_sketch}(b) and \ref{fig:bilayer_sketch}(c). Increasing $t_\perp^\prime > 0$ increases (decreases) the bandwidth of the $k_z = 0$ ($\pi$) bands, as shown in Fig.~\ref{fig:bilayer_sketch}(d). Importantly, the lower-energy band can be driven through a Lifzhits transition for sufficiently large values of $t^{\phantom\prime}_\perp$ and/or $t_\perp^\prime$ and suitable values of the chemical potential $\mu$. Across this transition, the system goes from having two disconnected Fermi surfaces centered at $\Gamma$ and $M$ to having only a single Fermi surface at $M$ and an incipient band at $\Gamma$, as sketched in the insets of \ref{fig:bilayer_sketch}(b)-(d). 
+The noninteracting band structure for different choices of interlayer hopping $t^{\phantom\prime}_\perp$ and $t_\perp^\prime$ and $\mu = t$ are plotted in Fig.~\ref{fig:bilayer_sketch}(b)-(d). Increasing the value of $t_\perp$ controls the energy separation between the bands, as shown in Figs.~\ref{fig:bilayer_sketch}(b) and \ref{fig:bilayer_sketch}(c). Increasing $t_\perp^\prime > 0$ increases (decreases) the bandwidth of the $k_z = 0$ ($\pi$) bands, as shown in Fig.~\ref{fig:bilayer_sketch}(d). Importantly, the lower-energy band can be driven through a Lifshitz transition for sufficiently large values of $t^{\phantom\prime}_\perp$ and/or $t_\perp^\prime$ and suitable values of the chemical potential $\mu$. Across this transition, the system goes from having two disconnected Fermi surfaces centered at $\Gamma$ and $M$ to having only a single Fermi surface at $M$ and an incipient band at $\Gamma$, as sketched in the insets of \ref{fig:bilayer_sketch}(b)-(d). 
 We can, therefore, adjust the interlayer hopping parameters to tune the system between these cases. 
 However, the Hubbard interaction will further renormalize the bands, which can alter their relative positions. For example, the Hartree contribution to the electron self-energy $\Sigma({\bf k},\mathrm{i}\omega_n)$ will further separate the bands \cite{KurokiFlex2020, RademakerEnhanced2021} while other self-energy terms renormalize the electronic structure~\cite{KurokiFlex2020, RademakerEnhanced2021, Maier2019, PelliciariRIXS2020}. It can be the case that one of the renormalized bands is incipient, even when both noninteracting bands cross $E_\mathrm{F}$. It is, therefore, necessary to compute the dressed electronic structure as encoded in the single-particle spectral function $A({\bf k},\omega)$. Throughout, we obtained  $A({\bf k},\omega)$ by analytically continuing our results to the real frequency axis using the maximum entropy method~\cite{Gubernatis1991}. The reader can find additional details in Ref.~\citenum{Maier2019}. 
 
@@ -151,7 +153,7 @@ However, the Hubbard interaction will further renormalize the bands, which can a
 \begin{figure}[t]
 \centering
 \includegraphics[scale=0.34]{commonAKW_U6_n0pt9_vs_n0pt85_tp2pt3_vs_tp2pt8_bt5.png}
-\caption{The single-particle spectral function $A({\bf k},\omega)$ for the bilayer Hubbard model, computed at an inverse temperature $\beta = 5/t$ and on an $4\times4\times2$ cluster with $U = 6t$. The left panel shows results for $t_{\perp} = 2.3t$, $t_\perp^\prime = 0$, and $n =1.10$. The right panel panels hows results for $t_{\perp} = 2.8t$, $t_\perp^\prime = 0$, and $n =1.15$. The red line indicates the position of the Fermi energy. The high symmetry points are defined as $\Gamma = (0,0)$, $M = (\pi/a,\pi/a)$, and $X = (\pi/a,0)$.}
+\caption{The single-particle spectral function $A({\bf k},\omega)$ for the bilayer Hubbard model, computed at an inverse temperature $\beta = 5/t$ and on an $4\times4\times2$ cluster with $U = 6t$. The left panel shows results for $t_{\perp} = 2.3t$, $t_\perp^\prime = 0$, and $n =1.10$. The right panel panel shows results for $t_{\perp} = 2.8t$, $t_\perp^\prime = 0$, and $n =1.15$. The red line indicates the position of the Fermi energy. The high symmetry points are defined as $\Gamma = (0,0)$, $M = (\pi/a,\pi/a)$, and $X = (\pi/a,0)$.}
 \label{fig:Akwbulkinc}
 \end{figure}
 
@@ -159,7 +161,7 @@ However, the Hubbard interaction will further renormalize the bands, which can a
 \centering
 \includegraphics[scale=0.4]{kaveraged_eig_U6_tp2pt8_tpp0_bt5_n0pt85.png}
 \includegraphics[scale=0.4]{kaveraged_Eig_U6_tp2pt3_tpp0_bt5_n0pt95.png}
-\caption{The frequency dependence of the leading BSE eigenvectors, averaged over ${\bf k} = (k_x,k_y)$ in the first Brillouin zone, and projected onto the high- ($k_z = 0$) and low-energy ($\pi$) bands. Results are shown for (a) an incipient band case with $n=1.15$, $\beta=5t$, $t_{\perp}=2.8t$ , and $t_\perp^\prime = 0$, and (b) a two-band case $n=1.05$, $\beta=5t$, $t_{\perp}=2.3t$, and $t_\perp^\prime = 0$.}
+\caption{The frequency dependence of the leading BSE eigenvectors, averaged over ${\bf k} = (k_x,k_y)$ in the first Brillouin zone, and projected onto the high- ($k_z = 0$) and low-energy ($k_z = \pi$) bands. Results are shown for (a) an incipient band case with $n=1.15$, $\beta=5/t$, $t_{\perp}=2.8t$ , and $t_\perp^\prime = 0$, and (b) a two-band case $n=1.05$, $\beta=5/t$, $t_{\perp}=2.3t$, and $t_\perp^\prime = 0$.}
 \label{fig:kavEig}
 \end{figure}
 
@@ -172,7 +174,7 @@ Next, we examine how the superconducting correlations evolve with the band struc
 \begin{figure}[t]
 \centering
 \includegraphics[scale=0.4]{Temp_L0_varydensity.png}
-\caption{The temperature dependence of the leading eigenvalue of the Bethe-Salpeter equation $1-\lambda_{s^\pm}(T)$ for different parameter sets. The superconducting $T_c$ can be estimated from this data by extrapolating $1-\lambda_{s^\pm} = 0$, as indicated by the dashed lines. Results are shown for several cases where two-bands cross the Fermi level [$\{ n, t_\perp, t_\perp^\prime \} = \{1.05, 2.3t, 0\}$, $\{1.10, 2.3t, 0\}$, and $\{1.15, 2.3t, 0\}$, which have $T_c \approx 0.043t$, $0.025t$, and $0.014t$, respectively. Conversely, no superconducting transition is found for the case with an incipient band [$\{1.15, 2.8t, 0\}$].}
+\caption{The temperature dependence of the leading eigenvalue of the Bethe-Salpeter equation $1-\lambda_{s^\pm}(T)$ for different parameter sets. The superconducting $T_c$ can be estimated from this data by extrapolating $1-\lambda_{s^\pm} = 0$, as indicated by the dashed lines. Results are shown for several cases where two-bands cross the Fermi level [$\{ n, t^{\phantom\prime}_\perp, t_\perp^\prime \} = \{1.05, 2.3t, 0\}$, $\{1.10, 2.3t, 0\}$, and $\{1.15, 2.3t, 0\}]$, which have $T_c \approx 0.043t$, $0.025t$, and $0.014t$, respectively. Conversely, no superconducting transition is found for the case with an incipient band [$\{1.15, 2.8t, 0\}$].}
 \label{fig:lambdabulkinc}
 \end{figure}
 
@@ -181,7 +183,7 @@ $\phi_{s^\pm}(k)$ results from a combination of orbital character, Fermi surface
 
 Having established the dominant pairing symmetry, we now turn to the transition temperature $T_c$. Fig.~\ref{fig:lambdabulkinc} presents $1-\lambda_{s^\pm}(T)$ as a function of temperature for different values of the total density $n$ and $t_\perp$. The parameter sets $\{n, t^{\phantom\prime}_\perp, t^\prime_\perp\} = \{1.05, 2.3t, 0\}$, $\{1.10, 2.3t, 0\}$ and $\{1.15, 2.3t, 0\}$ all produce dressed spectral functions with two disconnected Fermi surface sheets similar to the one shown in the left panel of the Fig.~\ref{fig:Akwbulkinc}. Conversely, the parameters $\{1.15, 2.8t, 0\}$ produce an incipient band, as already established in the right panel of Fig.~\ref{fig:Akwbulkinc}. 
 
-We can estimate the superconducting $T_c$ for these parameter sets by extrapolating the temperature dependence of $1-\lambda_{s^\pm}(T)$ to zero. Here, we fit the low-temperature data with a function of the form $f(T) = A\log(T/T_c)$, which is then used to perform the extrapolation.\footnote{This functional form is motivated by the BCS Cooper log singularity. However, as we will be shown in Fig.~\ref{fig:separable_VandP}, such a divergence does not appear in the intrinsic pair-field susceptibility. Nevertheless, this choice describes the behavior of $1-\lambda_{s^\pm}(T)$ for $T\rightarrow T_c$ well.} Using this approach, we obtain finite transition temperatures for the cases with two Fermi surfaces, with $T_c \approx 0.043t$, $0.025t$, and $0.014t$ for $\{n, t_\perp, t^\prime_\perp\} = \{1.05, 2.3t, 0\}$, $\{1.10, 2.3t, 0\}$, and $\{1.15, 2.3t, 0\}$, respectively. (Again, the leading pairing instability in all three cases corresponds to an $s^\pm$ state.) Thus, $T_c$ is reduced as the system is progressively electron-doped and the hole-like band at $\Gamma$ approaches $E_\mathrm{F}$. For the parameter set resulting in an incipient band, we find that the leading instability is still of an $s^\pm$ symmetry, consistent with the predictions of several prior works~\cite{BangNJP2014, LinscheidPRL2016, Mishra2016, KurokiFlex2020, Maier2019, RademakerEnhanced2021}. However, we also observe a clear suppression of the pairing correlations and no clear signs of a superconducting transition down to the lowest simulated temperatures ($T = 0.033$), as shown in Fig.~\ref{fig:lambdabulkinc}. 
+We can estimate the superconducting $T_c$ for these parameter sets by extrapolating the temperature dependence of $1-\lambda_{s^\pm}(T)$ to zero. Here, we fit the low-temperature data with a function of the form $f(T) = A\log(T/T_c)$, which is then used to perform the extrapolation.\footnote{This functional form is motivated by the BCS Cooper log singularity. However, as we will be shown in Fig.~\ref{fig:separable_VandP}, such a divergence does not appear in the intrinsic pair-field susceptibility. Nevertheless, this choice describes the behavior of $1-\lambda_{s^\pm}(T)$ for $T\rightarrow T_c$ well.} Using this approach, we obtain finite transition temperatures for the cases with two Fermi surfaces, with $T_c \approx 0.043t$, $0.025t$, and $0.014t$ for $\{n, t^{\phantom\prime}_\perp, t^\prime_\perp\} = \{1.05, 2.3t, 0\}$, $\{1.10, 2.3t, 0\}$, and $\{1.15, 2.3t, 0\}$, respectively. (Again, the leading pairing instability in all three cases corresponds to an $s^\pm$ state.) Thus, $T_c$ is reduced as the system is progressively electron-doped and the hole-like band at $\Gamma$ approaches $E_\mathrm{F}$. For the parameter set resulting in an incipient band, we find that the leading instability is still of an $s^\pm$ symmetry, consistent with the predictions of several prior works~\cite{BangNJP2014, LinscheidPRL2016, Mishra2016, KurokiFlex2020, Maier2019, RademakerEnhanced2021}. However, we also observe a clear suppression of the pairing correlations and no clear signs of a superconducting transition down to the lowest simulated temperatures ($T = 0.033t$), as shown in Fig.~\ref{fig:lambdabulkinc}. 
 
 \begin{figure}[t]
 \centering
@@ -189,34 +191,46 @@ We can estimate the superconducting $T_c$ for these parameter sets by extrapolat
 \includegraphics[scale=0.42]{V_vs_P_varyT.png}
 \vspace{-0.75cm}
 \caption{The temperature dependence of (a) the interaction strength $V_{s^\pm}(T)$ 
-and (b) dressed pair-field susceptibility $P_{s^\pm}(T)$ for different parameter sets. Results are shown for  $\{n,t_\perp,t_\perp^\prime\} = \{1.05, 2.3t, 0\}$, $\{1.10,2.3t,0\}$, $\{1.15,2.3t,0\}$ (all with two bands crossing $E_\mathrm{F}$), and $\{1.15,2.8t,0\}$ (an incipient band case). All results were obtained on an $4\times 4\times 2$ cluster with $U = 6t$. 
+and (b) dressed pair-field susceptibility $P_{s^\pm}(T)$ for different parameter sets. Results are shown for  $\{n,t^{\phantom\prime}_\perp,t_\perp^\prime\} = \{1.05, 2.3t, 0\}$, $\{1.10,2.3t,0\}$, $\{1.15,2.3t,0\}$ (all with two bands crossing $E_\mathrm{F}$), and $\{1.15,2.8t,0\}$ (an incipient band case). All results were obtained on an $4\times 4\times 2$ cluster with $U = 6t$. 
 }
 \label{fig:separable_VandP}
 \end{figure}
 
-The results shown in Fig.~\ref{fig:Akwbulkinc} suggest that superconductivity is suppressed in the incipient band case. To better understand the mechanism behind this behavior, we calculated the noninteracting dressed (intrinsic) pair-field susceptibility $P_{s^\pm}(T)$ [Eq.~(\ref{eq:P0})] and the $s^\pm$ interaction strength $V_{s^\pm}(T)$ [Eq.~\ref{eq:V}]. Fig.~\ref{fig:separable_VandP} presents the temperature evolution of both quantities for the same parameter sets used in Fig.~\ref{fig:lambdabulkinc}. 
+The results shown in Fig.~\ref{fig:Akwbulkinc} suggest that superconductivity is suppressed in the incipient band case. To better understand the mechanism behind this behavior, we calculated the noninteracting dressed (intrinsic) pair-field susceptibility $P_{s^\pm}(T)$ [Eq.~(\ref{eq:P0})] and the $s^\pm$ effective interaction strength $V_{s^\pm}(T)$ [Eq.~(\ref{eq:V})]. Fig.~\ref{fig:separable_VandP} presents the temperature evolution of both quantities for the same parameter sets used in Fig.~\ref{fig:lambdabulkinc}. 
 In general, these quantities display a very similar temperature dependence as observed in previous work for the weakly doped single-band Hubbard model in the pseudogap regime \cite{Maier2016}. In a typical BCS superconductor, the superconducting instability is driven by the Cooper log instability of the noninteracting pair-field susceptibility $P(T)$. In contrast to this behavior, here, $P_{s^\pm}(T)$ instead decreases as the temperature is lowered, and the instability arises from an increase in the pairing interaction $V_{s^\pm}(T)$ in all cases.  Moreover, we see competing tendencies as the hole band becomes incipient: the systems with two bands crossing the Fermi level generally have larger $P_{s^\pm}$ compared to the one with an incipient band. In contrast, the pairing interaction $V_{s^\pm}$ is the largest for the incipient band case. Matsumoto {\it et al.} gave a plausible argument for this behavior  \cite{KurokiFlex2020}. They proposed that spin fluctuation spectral weight is transferred from low, pair-breaking energies to more optimal higher energies as the band becomes incipient. However, we find that the removal of Fermi energy states as the hole band drops below $E_\mathrm{F}$ significantly decreases the intrinsic pair-field susceptibility $P_{s^\pm}$. This loss counteracts any increase in $V_{s^\pm}$, resulting in a net decrease in $T_c$.  
 
 \begin{figure}[t]
 \centering
 \includegraphics[scale=0.4]{suscept_q000.png}
-\caption{The static spin susceptibility $\chi_s({\bf Q})$ measured at momentum scattering vector $\mathbf{Q}=(0,0,0)$ for the same parameter sets used in Fig.\ref{fig:separable_VandP}. The existence of a local maximum in the temperature dependence of $\chi_s(\mathbf{Q}=(0,0,0))$ at a temperature $T^*$ (indicated by the arrows) together with the decrease in $P_{s^\pm}(T)$ as $T$ is lowered  signals the formation of a pseudogap in the density of states.}
+\caption{The static spin susceptibility $\chi_s({\bf Q})$ measured at momentum scattering vector $\mathbf{Q}=0$ for the same parameter sets used in Fig.~\ref{fig:separable_VandP}. The existence of a local maximum in the temperature dependence of $\chi_s(\mathbf{Q}=0)$ at a temperature $T^*$ together with the decrease in $P_{s^\pm}(T)$ as $T$ is lowered  signals the formation of a pseudogap in the density of states.}
 \label{fig:spinsusQ0}
 \end{figure}
 
 Moreover, we find that $P_{s^\pm}$ decreases with increasing doping away from the half-filled Mott insulating state, even for cases where both bands cross the Fermi level. This is counter to what is observed for the single-band Hubbard model, where the $d$-wave intrinsic pair-field susceptibility is found to increase with increasing doping \cite{Maier2016, Maier2018}. The behavior we observe here arises from the projection of the pair propagator onto the leading $s^\pm$ eigenfunction $\phi_{s^\pm}$ in Eq.~(\ref{eq:P0}), and its asymmetry between the two bands. As the doping increases, the asymmetry in $\phi_{s^\pm}$ results in an increased emphasis of the lower energy $k_z = \pi$ band in this projection, which contributes less to $P_{s^\pm}$, resulting in its decrease.
 
-As noted, the reduction in $P_{s^\pm}(T)$ with decreasing temperature is similar to the pseudogap behavior observed before in the single-band Hubbard model \cite{Maier2016}, where Fermi surface states are removed in the anti-nodal region. The situation for the incipient case is analogous, where the states associated with the $k_z = \pi$ band are submerged below the Fermi energy. While the electron Fermi surface pocket associated with the $k_z = 0$ band remains intact, the $s^\pm$ pairing state necessarily involves the states on the submerged band \cite{Maier2019}. The $s^\pm$ is therefore affected by the absence of these states, here manifested as a decrease in $P_{s^\pm}(T)$. But what is perhaps more remarkable is that the cases with two bands crossing the Fermi energy also show a decrease of $P_{s^\pm}(T)$ as the temperature is lowered, indicating that low-energy states are partially removed. To confirm this, we calculated the bulk spin susceptibility $\chi_s(\mathbf{Q}=0, \omega=0)$ as a function of temperature, as shown in Fig.~\ref{fig:spinsusQ0}. For all the systems, the spin susceptibility reaches a maximum value at an intermediate $T = T^*$ before decreasing as the temperature is lowered further. This behavior reflects the removal of low-energy spin excitations, as previously observed in DCA calculations for the bilayer Hubbard model in Ref.~\citenum{Maier2011}. As discussed in that work, this behavior may be attributed to the inter-layer spin fluctuations becoming gapped at low temperatures due to the formation of inter-layer singlets for large $t_\perp$. Together with the decrease seen in $P_{s^\pm}(T)$ as the temperature is lowered, it signals the opening of a pseudogap in the density of states at $T^*$, as observed previously for the single-band Hubbard model in the large $U$ limit \cite{Maier2016, Maier2019_2}. The larger doping case with $\langle n\rangle=1.15$ and $t_\perp=2.3t$, where $P_{s^\pm}(T)$ continues to rise at lower temperatures, is somewhat peculiar. Here, we believe that the larger electron doping suppresses the singlet formation and pseudogap behavior. 
+As noted, the reduction in $P_{s^\pm}(T)$ with decreasing temperature is similar to the pseudogap behavior observed before in the single-band Hubbard model \cite{Maier2016}, where Fermi surface states are removed in the anti-nodal region. The situation for the incipient case is analogous, where the states associated with the $k_z = \pi$ band are submerged below the Fermi energy. While the electron Fermi surface pocket associated with the $k_z = 0$ band remains intact, the $s^\pm$ pairing state necessarily involves the states on the submerged band \cite{Maier2019}. The $s^\pm$ correlations are therefore affected by the absence of these states, here manifested as a decrease in $P_{s^\pm}(T)$. But what is perhaps more remarkable is that the cases with two bands crossing the Fermi energy also show a decrease of $P_{s^\pm}(T)$ as the temperature is lowered, indicating that low-energy states are partially removed. To confirm this, we calculated the bulk spin susceptibility $\chi_s(\mathbf{Q}=0, \omega=0)$ as a function of temperature, as shown in Fig.~\ref{fig:spinsusQ0}. For all the systems, the spin susceptibility reaches a maximum value at an intermediate $T = T^*$ before decreasing as the temperature is lowered further. This behavior reflects the removal of low-energy spin excitations, as previously observed in DCA calculations for the bilayer Hubbard model in Ref.~\citenum{Maier2011}. As discussed in that work, this behavior may be attributed to the inter-layer spin fluctuations becoming gapped at low temperatures due to the formation of inter-layer singlets for large $t_\perp$. Together with the decrease seen in $P_{s^\pm}(T)$ as the temperature is lowered, it signals the opening of a pseudogap in the density of states at $T^*$, as observed previously for the single-band Hubbard model in the large $U$ limit \cite{Maier2016, Maier2019_2}. The larger doping case with $\langle n\rangle=1.15$ and $t_\perp=2.3t$, where $\chi_{s}({\bf Q}=0)$ continues to rise at lower temperatures, is somewhat peculiar. Here, we believe that the larger electron doping suppresses the singlet formation and pseudogap behavior. 
+
+To provide further evidence for the formation of a pseudogap, we have studied the DCA coarse-grained, imaginary-time single-particle Green's function ${\bar G}({\bf  K}_\Gamma, \tau)$. ${\bar G}({\bf K}) = 1/V_{\bf K}\int_{{\cal P}_{\bf K}} d{\bf k} G({\bf k})$ is the average of the Green's function $G({\bf k})$ over the Brillouin zone patch ${\cal P}_{\bf K}$ with area $V_{\bf K}$ centered at ${\bf K}$ \cite{Maier_Review}. For ${\bf K}_\Gamma=(0,0,\pi)$ it contains the Fermi level $\omega=0$ states near the $\Gamma$ point of the hole-like band. For $\tau = \beta/2$, this quantity provides a measure of the spectral weight at the Fermi level without the need for analytically continuing the Green's function to the real frequency axis, as discussed in Ref.~\cite{PhysRevLett.75.312}. Fig.~\ref{fig:Gbetahalf} plots ${\bar G}({\bf K}_\Gamma, \beta/2)$ for different values of $n$ and $t_{\perp}$ as a function of temperature. For all the cases we examined, ${\bar G}({\bf K}_\Gamma, \beta/2)$ is large at $T=0.2t-0.3t$ but decreases abruptly as the temperature is lowered. This behavior indicates that the states near the Fermi level are suppressed at low temperatures for all values of $t_\perp$ and $n$. For the cases with the hole-like band crossing the Fermi level, this suppression is consistent with the formation of a pseudogap in that band.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{Gbetahalf_k00pi.png}
+\caption{
+The temperature dependence of the DCA coarse-grained (cluster) Green's function ${\bar G}({\bf K}_\Gamma, \beta/2)$ of the hole band for ${\bf K}_\Gamma = (0,0,\pi)$ for $t_{\perp}^{\prime}=0.0$, $U = 6t$ and different values of $t_{\perp}$ and $n$ on $N = 4\times 4\times 2$ cluster. 
+ }
+\label{fig:Gbetahalf}
+\end{figure}
+
 
 \subsection{Results with next-nearest-neighbor interlayer hopping}
 In the previous section, we set the inter-layer next-nearest-neighbor hopping $t_\perp^{\prime}$ to zero and found 
 no indications that a system with an incipient band had a higher $T_c$ compared to the case where two bands cross $E_\mathrm{F}$. 
-Ref.~\cite{KurokiFlex2020}, however, studied Hubbard ladders and bilayers with a non-zero $t_\perp^{\prime}$ using FLEX and VMC and found such hopping could enhance superconductivity when the top of the hole band is near $E_\mathrm{F}$. Motivated by this, we performed additional simulations with  $t_\perp^{\prime} \ne 0$. To begin, we fixed $t_\perp =1.8t$ and $U=6t$, and again considered $4\times 4\times 2$ clusters while varying $t_\perp^{\prime}$ and densities $n=1.05$, $1.10$, and $1.15$. From the technical point of view, as we increase $t_\perp^{\prime}$, the average value of the Fermion sign obtained by our QMC solver decreases abruptly for these parameters. For this reason, we are restricted to comparatively higher temperatures than in the previous case. 
+Ref.~\cite{KurokiFlex2020}, however, studied Hubbard ladders and bilayers with a nonzero $t_\perp^{\prime}$ using FLEX and VMC and found such hopping could enhance superconductivity when the top of the hole band is near $E_\mathrm{F}$. Motivated by this, we performed additional simulations with  $t_\perp^{\prime} \ne 0$. To begin, we fixed $t_\perp =1.8t$ and $U=6t$, and again considered $4\times 4\times 2$ clusters while varying $t_\perp^{\prime}$ and densities $n=1.05$, $1.10$, and $1.15$. Note, as we increase $t_\perp^{\prime}$, the average value of the Fermion sign obtained by our QMC solver decreases abruptly for these parameters. For this reason, we are restricted to comparatively higher temperatures than in the previous case. 
 
 \begin{figure}[t]
 \centering
 \includegraphics[scale=0.4]{U6_tperp1pt8_varydensity.png}
-\caption{The dependence of the largest ($s^\pm$) eigenvalue $\lambda_0$ of the BSE equation as a function of $t_{\perp}^{\prime}$ and  different densities. All results were obtained for $t_{\perp}=1.8t$, $\beta=5/t$, $U=6t$ and on an $4\times 4\times 2$ cluster.}
+\caption{The dependence of the largest eigenvalue $\lambda_0 = \lambda_{s^\pm}$ of the BSE equation as a function of $t_{\perp}^{\prime}$ and  different densities. All results were obtained for $t_{\perp}=1.8t$, $\beta=5/t$, $U=6t$ and on an $4\times 4\times 2$ cluster.}
 \label{fig:lambdatperpprime}
 \end{figure}
 
@@ -229,19 +243,19 @@ Ref.~\cite{KurokiFlex2020}, however, studied Hubbard ladders and bilayers with a
 
 Figure~\ref{fig:lambdatperpprime} plots the leading eigenvalue of the BSE as a function of $t_\perp^{\prime}$ at a fixed inverse temperature of $\beta=5/t$. As with the $t^\prime_\perp = 0$ case, we find that the leading instability has an $s^\pm$ symmetry, consistent with the prior FLEX results \cite{KurokiFlex2020}. We also find that the strength of the pairing correlations reaches a maximum value at an optimal density-dependent $t_\perp^{\prime}$ value before decreasing gradually as $t_\perp^{\prime}$ is increased further. We also note that $\lambda_{s^\pm}$ increases more rapidly as a function of $t^\prime_\perp$ in the systems with larger electron densities. Our observations support the findings of Ref.~\citenum{KurokiVMC2020} who also observed increased pairing correlations with larger $t^\prime_\perp$ and a fixed temperature and density. 
 
-Next, we examine the effect of $t_\perp^{\prime}$ on the dressed spectral function of the system with parameters $n=1.15$, $t_\perp=1.8t$, $U=6t$ and $\beta=5/t$, which produces the largest increase of the pairing correlations with increasing $t_\perp^{\prime}$ (see Fig.~\ref{fig:lambdatperpprime}).  Fig.~\ref{fig:Akwtperprime} shows the single-particle spectral function for $t_\perp^{\prime} \in [0,0.9]$, as indicated in each panel. In general, we observe that the hole-like band at $\Gamma$ flattens with increasing $t^\prime_\perp$ and is pushed towards lower energies, consistent with the expectation from the $U=0$ picture (see Fig.~\ref{fig:bilayer_sketch}). The system undergoes a Lifshitz transition and forms an incipient band for $0.6 < t_\perp^{\prime} <0.75t$, as shown in the third column of the first row. Comparing with Fig.~\ref{fig:lambdatperpprime}, we see that the maximum in the $s^\pm$ eigenvalue for this parameter set at $t_\perp^\prime \approx 0.75t$ corresponds to a system where the hole band is incipient, i.e., slightly below the Fermi level. This $t_\perp^\prime$ behavior of the $s^\pm$ eigenvalue at a fixed temperature is, therefore, consistent with the observation of Matsumoto {\it et al.}~\cite{KurokiFlex2020}, who also found that the eigenvalue is strongly enhanced when the top of the hole band is driven close to $E_\mathrm{F}$. 
+Next, we examine the effect of $t_\perp^{\prime}$ on the dressed spectral function of the system with parameters $n=1.15$, $t_\perp=1.8t$, $U=6t$ and $\beta=5/t$, which produces the largest increase of the pairing correlations with increasing $t_\perp^{\prime}$ (see Fig.~\ref{fig:lambdatperpprime}).  Fig.~\ref{fig:Akwtperprime} shows the single-particle spectral function for $t_\perp^{\prime} \in [0,0.9]$, as indicated in each panel. In general, we observe that the hole-like band at $\Gamma$ flattens with increasing $t^\prime_\perp$ and is pushed towards lower energies, consistent with the expectation from the $U=0$ picture (see Fig.~\ref{fig:bilayer_sketch}). The system undergoes a Lifshitz transition and forms an incipient band for $0.6t < t_\perp^{\prime} <0.75t$, as shown in the third and fourth columns of the first row. Comparing with Fig.~\ref{fig:lambdatperpprime}, we see that the maximum in the $s^\pm$ eigenvalue for this parameter set at $t_\perp^\prime \approx 0.75t$ corresponds to a system where the hole band is incipient, i.e., slightly below the Fermi level. This $t_\perp^\prime$ behavior of the $s^\pm$ eigenvalue at a fixed temperature is, therefore, consistent with the observation of Matsumoto {\it et al.}~\cite{KurokiFlex2020}, who also found that the eigenvalue is strongly enhanced when the top of the hole band is driven close to $E_\mathrm{F}$. 
 
-Figure~\ref{fig:lambdatperpprime2} plots the temperature dependence of the corresponding leading eigenvalues of the BSE the same parameters shown in Fig.~\ref{fig:Akwtperprime}. Due to the severe sign problem present for these parameters, here, we consider $2\times 2\times 2$ clusters to access temperatures low enough that we can reliably estimate $T_c$ by extrapolation (see inset). The results reveal that $T_c$ is enhanced as $t_\perp^{\prime}$ increases up to $0.6$ but undergoes a sharp decrease at $t_\perp^{\prime} = 0.75$, when the hole band becomes incipient. Hence, unlike $\lambda_{s^\pm}$, which is maximized for the incipient band at $t_\perp^\prime=0.75$, $T_c$ is maximized for the $t_\perp^\prime=0.6$ case, just before the Lifshitz transition, and falls significantly when the band becomes incipient. We also note that the $t_\perp^\prime=0.6$ case still has significantly lower $T_c$ than the case in Fig.~\ref{fig:lambdabulkinc} with $\langle n\rangle=1.05$, $t^{\phantom\prime}_\perp=2.3$ and $t_\perp^\prime=0$, providing further evidence that two Fermi surfaces are better than one for maximizing $T_c$. 
+Figure~\ref{fig:lambdatperpprime2} plots the temperature dependence of the corresponding leading eigenvalues of the BSE the same parameters shown in Fig.~\ref{fig:Akwtperprime}. Due to the severe sign problem present for these parameters, here, we consider $2\times 2\times 2$ clusters to access temperatures low enough that we can reliably estimate $T_c$ by extrapolation (see inset). The results reveal that $T_c$ is enhanced as $t_\perp^{\prime}$ increases up to $0.6t$ but undergoes a sharp decrease at $t_\perp^{\prime} = 0.75t$, when the hole band becomes incipient. Hence, unlike $\lambda_{s^\pm}$, which is maximized for the incipient band at $t_\perp^\prime=0.75t$, $T_c$ is maximized for the $t_\perp^\prime=0.6t$ case, just before the Lifshitz transition, and falls significantly when the band becomes incipient. We also note that the $t_\perp^\prime=0.6t$ case still has significantly lower $T_c$ than the case in Fig.~\ref{fig:lambdabulkinc} with $\langle n\rangle=1.05$, $t^{\phantom\prime}_\perp=2.3$ and $t_\perp^\prime=0$, providing further evidence that two Fermi surfaces are better than one for maximizing $T_c$ in the bilayer Hubbard model with large interlayer hopping. 
 
 % It is also interesting to note that we observe apparent logarithmic behavior for the BSE eigenvalues when two bands cross the Fermi level. However, this picture changes once the hole band becomes incipient. In other words, the system is losing its BCS log scaling. 
 
-Generally, we find that the extrapolated $T_c$ values are smaller in the incipient band case, and the system lacks a superconducting transition if the hole band is too far from the Fermi level. Our results show that a finite $t_\perp^{\prime}$ can indeed increase the pairing correlations at a fixed temperature as found by Kuroki \emph{et al.}. But this enhancement does not produce an increased $T_c$. For completeness, we also checked that our findings are robust against modest increases in the value of $U$, see appendix~\ref{sec:appendixU8}.
+Generally, we find that the extrapolated $T_c$ values are smaller in the incipient band case, and the system lacks a superconducting transition if the hole band is too far from the Fermi level. Our results show that a finite $t_\perp^{\prime}$ can indeed increase the pairing correlations at a fixed temperature as found by Ref.~\citenum{KurokiVMC2020}. But this enhancement does not produce an increased $T_c$. For completeness, we also checked that our findings are robust against modest increases in the value of $U$, see appendix~\ref{sec:appendixU8}.
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{2x2_L0_n0pt85_U6_varyT.png}
 \caption{The temperature dependence of the leading eigenvalue of the BSE equation of the bilayer Hubbard model for  $t_{\perp}=1.8t$ and different values of $t_{\perp}^{\prime}$. The remaining model parameters are $U=6t$, $n=1.15$, and $N = 2\times 2 \times 2$. The inset shows the estimated transition temperature that could be reliably estimated by 
-fitting $1-\lambda_0(T)$ with a function $f(T) = A\log(T/T_c)$. $2\times2\times2$ results are also plotted for $n=1.05$, $t_\perp=2.3$, $t_\perp^\prime=0$ (blue curve), to show that the case with two Fermi pockets has significantly higher $T_c$.}
+fitting $1-\lambda_0(T)$ with a function $f(T) = A\log(T/T_c)$. $2\times2\times2$ results are also plotted for $n=1.05$, $t_\perp=2.3t$, $t_\perp^\prime=0$ (blue curve), to show that the case with two Fermi pockets has significantly higher $T_c$.}
 \label{fig:lambdatperpprime2}
 \end{figure}
 
@@ -251,15 +265,15 @@ From all of the parameter sets we have checked, the largest $T_c$ that we have b
 To answer this question, we considered the pairing correlations in the model with a fixed density $n=1.05$ and $t_\perp \in [1.8,2.6]$ such that the system has two well-defined Fermi surfaces. Fig.~\ref{fig:lambdatperpprime3} plots the  evolution of $\lambda_{s^\pm}$ for different values of $t_{\perp}^{\prime}$ at a fixed temperature $\beta= 5/t$. Unlike the case with $n=1.15$ (Fig.~\ref{fig:lambdatperpprime}), here we find that $\lambda_{s^\pm}$ is only weakly dependent on $t_{\perp}^{\prime}$ for all of the $t_{\perp}$ values we have considered. 
 Nevertheless, $\lambda_{s^\pm}$ does exhibit a local maximum for some optimal value of $t_\perp^\prime$ that depends on the value of $t_\perp$. For small $t_\perp^\prime \approx 0.2t$, we also find that $\lambda_{s^\pm}$ has an optimal $t_{\perp}$ of about $2.4t$. 
 
-Turning to the transition temperature, in Fig.~\ref{fig:lambdavsT_n0.95} we analyze the temperature dependence of $\lambda_{s^\pm}$ for the cases $\{n, t^{\phantom\prime}_\perp, t^\prime_\perp\}$  = $\{1.05,2.4t,0\}$, $\{1.05,2.4t,0.2t\}$, $\{1.05,2t,0\}$. 
-By extrapolating the values of $1-\lambda_{s^\pm}$, we obtain $T_c \approx 0.0398t$,  $0.041t$, $0.047t$, respectively. Thus, the largest $\lambda_{s^\pm}$ value at $\beta = 5/t$ occurs for the parameters $n=1.05$, $t_\perp = 2.4t$, $t_\perp^\prime=0.2t$, but the highest $T_c$ is achieved for the parameters $\{1.05,2t,0\}$. Based on these results, we conclude that adding a finite $t^{\phantom\prime}_{\perp}$ or $t_{\perp}^{\prime}$ might increase the superconducting correlations at a finite temperature, but this might not mean that the resulting $T_c$ will also increase. One should always check the temperature dependence and extrapolate for the $T_c$.
+Turning to the transition temperature, in Fig.~\ref{fig:lambdavsT_n0.95} we analyze the temperature dependence of $\lambda_{s^\pm}$ for the cases $\{n, t^{\phantom\prime}_\perp, t^\prime_\perp\}$  = $\{1.05,2.4t,0\}$, $\{1.05,2.4t,0.2t\}$, and $\{1.05,2t,0\}$. 
+By extrapolating the values of $1-\lambda_{s^\pm}$, we obtain $T_c \approx 0.0398t$,  $0.041t$, $0.047t$, respectively. Thus, the largest $\lambda_{s^\pm}$ value at $\beta = 5/t$ occurs for the parameters $n=1.05$, $t_\perp = 2.4t$, $t_\perp^\prime=0.2t$, but the highest $T_c$ is achieved for the parameters $\{1.05,2t,0\}$. Based on these results, we conclude that adding a finite $t_{\perp}^{\prime}$ might increase the superconducting correlations at a finite temperature, but this might not mean that the resulting $T_c$ will also increase. One should always check the temperature dependence and extrapolate for the $T_c$.
 
 Finally, Fig.~\ref{fig:Akwtperprime_n0.95} shows how the spectral function $A({\bf k},\omega)$ evolves for $\{1.05,2t,t^\prime_\perp\}$ as a function of $t_\perp^\prime$, for which we obtained the highest $T_c$. Here, we see that the introduction of $t_\perp^\prime$ produces a significant change in the band structure. At the same time, we know from Figs.~\ref{fig:lambdatperpprime} and \ref{fig:lambdatperpprime3} that $t_{\perp}^{\prime}$ does very little to $\lambda_{s^\pm}$ for this case. 
  
  \begin{figure}
 \centering
 \includegraphics[scale=0.43]{Lambda0_U6_n0pt95_bt5_vary_tp_tpp.png}
-\caption{The leading BSE eigenvalue of the bilayer Hubbard model for the parameters set with $n=1.05$ and $U=6t$ at $\beta= 5/t$ for different values of $t_{\perp}$ and $t_{\perp}^{\prime}$ calculated on a $4\times 4\times 2$ cluster. }
+\caption{The leading BSE eigenvalue of the bilayer Hubbard model for the parameters set with $n=1.05$ and $U=6t$ at $\beta= 5/t$ for different values of $t^{\phantom\dagger}_{\perp}$ and $t_{\perp}^{\prime}$ calculated on a $4\times 4\times 2$ cluster. }
 \label{fig:lambdatperpprime3}
 \end{figure}
 
@@ -268,7 +282,7 @@ Finally, Fig.~\ref{fig:Akwtperprime_n0.95} shows how the spectral function $A({\
  \begin{figure}
 \centering
 \includegraphics[width=\columnwidth]{Lambda0_U6_n0pt95_vary_tp_tpp_temp.png}
-\caption{The temperature dependence of the leading eigenvalue of the BSE equation of the bilayer Hubbard model for the parameters set with $n=1.05$ and $U=6t$ for different values of $t_{\perp}$ and $t_{\perp}^{\prime}$ calculated on a $4\times 4\times 2$ cluster.  }
+\caption{The temperature dependence of the leading eigenvalue of the BSE equation of the bilayer Hubbard model for the parameters set with $n=1.05$ and $U=6t$ for different values of $t^{\phantom\prime}_{\perp}$ and $t_{\perp}^{\prime}$ calculated on a $4\times 4\times 2$ cluster.  }
 \label{fig:lambdavsT_n0.95}
 \end{figure}
 
@@ -283,15 +297,15 @@ Finally, Fig.~\ref{fig:Akwtperprime_n0.95} shows how the spectral function $A({\
 
 
 \section{Discussion and Conclusions}\label{sec:discussion} 
-We have studied the electronic structure and pairing correlations of the bilayer Hubbard model in the strong coupling $(U = 6t)$ and large interlayer hopping $t_\perp$ limit using the DCA with a nonperturbative QMC cluster solver. By adjusting the value of the interlayer hopping integral, we can tune the system through a Lifshitz transition whereby the system changes from having an electron- and hole-like band crossing the Fermi level at $M$ and $\Gamma$, respectively, to one with one band crossing $E_\mathrm{F}$ at $M$ and an incipient hole-like band at $\Gamma$. In all cases, the solutions to the BSE indicate that the leading superconducting instability corresponds to an $s_\pm$ symmetry, 
+We have studied the electronic structure and pairing correlations of the bilayer Hubbard model in the strong coupling $(U = 6t)$ and large interlayer hopping $t_\perp$ limit using the DCA with a nonperturbative QMC cluster solver. By adjusting the value of the interlayer hopping integral, we can tune the system through a Lifshitz transition whereby the system changes from having electron- and hole-like bands crossing the Fermi level at $M$ and $\Gamma$, respectively, to one having a single band crossing $E_\mathrm{F}$ at $M$ and an incipient hole-like band at $\Gamma$. In all cases, the solutions to the BSE indicate that the leading superconducting instability corresponds to an $s_\pm$ symmetry, 
 where the sign of the order parameter changes between the two bands. Moreover, we find that the pairing correlations can be enhanced at a fixed temperature by narrowing the bandwidth of a nearly incipient band such that additional density of states is concentrated near $E_\mathrm{F}$. Both of these findings agree with prior studies \cite{BangNJP2014, ChenPRB2015, Mishra2016, KurokiFlex2020, LinscheidPRL2016, RademakerEnhanced2021}. 
 Contrary to these works, however, we find that $T_c$ is always reduced once one of the 
 bands is made incipient.  For example, in the case of the two-band system, we can extract finite values for the superconducting $T_c$ from the temperature dependence of the leading eigenvalue of the BSE. In the incipient band case, however, we find that $T_c$ rapidly decreases as the hole band is submerged. Our results provide compelling evidence that superconductivity in the bilayer Hubbard model, in the strong coupling and large interlayer hopping $t_\perp$ limit, is optimized when there are well-defined hole- and electron-like Fermi surface sheets. Subsequent electron doping then reduces $T_c$ in this model, provided all other factors remain fixed. 
 
-We stress that one should be careful in extrapolating our results to systems like the FeSe intercalates or FeSe/STO monolayers. The bilayer Hubbard model has been widely studied as a simple toy model for extrapolating between strongly correlated models with cuprate-, iron-pnictide-, and (incipient band) FeSe/STO-like band structures \cite{Maier2011, Mishra2016, Kuroki2008,  RademakerEnhanced2021, PelliciariRIXS2020}. However, in reality, the latter systems are multi-band materials whose band structures at the Fermi level are predominantly Fe $3d$ character with several partially filled bands crossing the Fermi level. The bilayer Hubbard model approximates these systems with a two-band model but with an on-site interorbital hopping $t_\perp$. For a non-zero $U \gg t_\perp$, the inter-orbital hopping will introduce a sizeable antiferromagnetic exchange coupling $J_\perp = 4t^2_\perp/U$ between the layers. The large interlayer AFM exchange may help explain why $T_c$ is reduced in the large $t_\perp$ limit, as it will tend to produce local disordered singlets within each unit cell. FLEX calculations cannot capture this effect. However, the Fe-based superconductors have large interatomic Hund's interactions, favoring ferromagnetic coupling between the two orbitals. 
+We stress that one should be careful in extrapolating our results to systems like the FeSe intercalates or FeSe/STO monolayers. The bilayer Hubbard model has been widely studied as a simple toy model for extrapolating between strongly correlated models with cuprate-, iron-pnictide-, and (incipient band) FeSe/STO-like band structures \cite{Maier2011, Mishra2016, Kuroki2008,  RademakerEnhanced2021, PelliciariRIXS2020}. However, in reality, the latter systems are multi-band materials whose band structures at the Fermi level are predominantly Fe $3d$ character with several partially filled bands crossing the Fermi level and significant interorbital Hund's interactions. The bilayer Hubbard model approximates these systems with a two-band model but with an on-site interorbital hopping $t_\perp$. For a nonzero $U \gg t_\perp$, the inter-orbital hopping will introduce a sizeable antiferromagnetic exchange coupling $J_\perp = 4t^2_\perp/U$ between the layers. The large AFM $J_\perp$ may help explain why $T_c$ is reduced in the large $t_\perp$ limit, as it will tend to produce local disordered singlets within each unit cell. FLEX calculations cannot capture this effect. In contrast, the Fe-based superconductors have large interatomic Hund's interactions, favoring ferromagnetic coupling between the two orbitals. These two situations are quite different. Nevertheless, our results call for additional studies of incipient band systems using nonpertubative methods capable of treating the full multi-orbital interactions of the Fe-based superconductors. 
 
 \begin{acknowledgments}
-This work was supported by the Scientific Discovery through Advanced Computing (SciDAC) program funded by the U.S. Department of Energy, Office of Science, Advanced Scientific Computing Research and Basic Energy Sciences, Division of Materials Sciences and Engineering. This research used resources of the Oak Ridge Leadership Computing Facility, which is a DOE Office of Science User Facility supported under Contract DE-AC05-00OR22725. This manuscript has been authored by UT-Battelle, LLC, under Contract No. DE-AC0500OR22725 with the U.S. Department of Energy. The United States Government retains and the publisher, by accepting the article for publication, acknowledges that the United States Government retains a non-exclusive, paid-up, irrevocable, world-wide license to publish or reproduce the published form of this manuscript, or allow others to do so, for the United States Government purposes. The Department of Energy will provide public access to these results of federally sponsored research in accordance with the DOE Public Access Plan (\url{http://energy.gov/downloads/doe-public-access-plan}). The DCA++ code used for this project can be obtained at \url{https://github.com/CompFUSE/DCA}. The data presented in this work can be obtained at \url{https://github.com/JohnstonResearchGroup/Karakuzu_etal_bilayer_2021}. 
+We thank P. M. Dee, L. Fanfarillo, and P. J. Hirschfeld for their comments on an early preprint of this work. This work was supported by the Scientific Discovery through Advanced Computing (SciDAC) program funded by the U.S. Department of Energy, Office of Science, Advanced Scientific Computing Research and Basic Energy Sciences, Division of Materials Sciences and Engineering. The analysis of the results performed by T. A. M. was partially supported by the U.S. Department of Energy, Office of Basic Energy Sciences, Materials Sciences and Engineering Division. This research used resources of the Oak Ridge Leadership Computing Facility, which is a DOE Office of Science User Facility supported under Contract DE-AC05-00OR22725. This manuscript has been authored by UT-Battelle, LLC, under Contract No. DE-AC0500OR22725 with the U.S. Department of Energy. The United States Government retains and the publisher, by accepting the article for publication, acknowledges that the United States Government retains a nonexclusive, paid-up, irrevocable, world-wide license to publish or reproduce the published form of this manuscript, or allow others to do so, for the United States Government purposes. The Department of Energy will provide public access to these results of federally sponsored research in accordance with the DOE Public Access Plan (\url{http://energy.gov/downloads/doe-public-access-plan}). The DCA++ code used for this project can be obtained at \url{https://github.com/CompFUSE/DCA}. The data presented in this work can be obtained at \url{https://github.com/JohnstonResearchGroup/Karakuzu_etal_bilayer_2021}. 
 \end{acknowledgments}
 
 \appendix
@@ -299,46 +313,229 @@ This work was supported by the Scientific Discovery through Advanced Computing (
 \begin{figure}
 \centering
 \includegraphics[scale=0.34]{Akw_tp1pt8_tpp0pt0_0pt75_U8.png}
-\includegraphics[scale=0.4]{2x2_n0.85_tperp1.8_varyT.png}
-\caption{Top row: $A({\bf k},\omega)$ for $t_{\perp}= 1.8$, $n = 1.15$, $U = 8t$, and $\beta = 5/t$, 
-The left and right panels shows results for $t^\prime_\perp = 0$ and $0.75t$, respectively. 
-Bottom: The temperature dependence of the leading eigenvalues of the BSE equation of the bilayer Hubbard model with $t_{\perp}=1.8t$ and different values of $t_{\perp}^{\prime}$. The remaining model parameters are $U=8t$ and $n=1.15$. 
-Both spectral function results were obtained on an $N = 4\times 4\times 2$ cluster, while the eigenvalues of the 
-BSE were obtained on an $N = 2\times 2\times 2$ cluster. 
+\includegraphics[scale=0.4]{size_dep_U8_tp1pt8_n1pt15.png}
+\caption{Top: The single-particle spectral function $A({\bf k},\omega)$ for $t_{\perp}= 1.8$, $n = 1.15$, $U = 8t$, and $\beta = 5/t$, The left and right panels shows results for $t^\prime_\perp = 0$ and $0.75t$, respectively. 
+The remaining model parameters are $U=8t$ and $n=1.15$. 
+Both spectral function results were obtained on an $N = 4\times 4\times 2$ cluster. 
+Bottom: The temperature dependence of the leading eigenvalues of the BSE equation of the bilayer Hubbard model with $t_{\perp}=1.8t$, different values of $t_{\perp}^{\prime}$, $n = 1.15$, and $U = 8t$. The eigenvalues of the BSE were obtained on $N = 4\times 4\times 2$ and $N = 2\times 2\times 2$ clusters. 
  }
 \label{fig:U8}
 \end{figure}
 
-Here, we consider results for $n=1.15$, $t_\perp =1.8t$, $\beta=5/t$, but an increased Hubbard interaction $U=8t$. 
-The resulting spectral functions are plotted in the left and right panels of Fig. \ref{fig:U8} for $t_\perp^{\prime}=0$ and $0.75t$, respectively. Compared to the case with $U=6t$ (Fig.~\ref{fig:Akwtperprime}, 4\textsuperscript{th} column, first row), we observe that increased $U$ pushes the hole band further below the Fermi level for $t_\perp^{\prime}=0.75t$. The corresponding temperature dependence of the leading BSE eigenvalues, shown in the bottom panel of Fig.~\ref{fig:U8}, clearly shows that T$_c$ is suppressed significantly once the hole-like band becomes incipient.
+Here, we present results for $n=1.15$, $t_\perp =1.8t$, $\beta=5/t$, but an increased Hubbard interaction $U=8t$. The resulting spectral functions are plotted in the left and right panels of Fig. \ref{fig:U8} for $t_\perp^{\prime}=0$ and $0.75t$, respectively. Compared to the case with $U=6t$ (Fig.~\ref{fig:Akwtperprime}, 4\textsuperscript{th} column, first row), we observe that increased $U$ pushes the hole band further below the Fermi level for $t_\perp^{\prime}=0.75t$. 
 
-%\begin{figure*}
-%\centering
-%\includegraphics[scale=0.4]{Temp_parquet_bulk_common.png}
-%\caption{}
-%\label{fig:parqbulk}
-%\end{figure*}
+The corresponding temperature dependence of the leading BSE eigenvalues are shown in the bottom panel of Fig.~\ref{fig:U8}. Here, we present the data for both $N = 4\times 4\times 2$ and $N = 2\times 2\times 2$ clusters to investigate the size dependence. In this case, we can not reach temperatures low enough to extract the superconducting $T_c$ on the larger clusters, due to exponential dependence of the sign problem on the system size. Nevertheless, we believe that our conclusions are robust against variations in the cluster size. For example, the comparison 
+in Fig.~\ref{fig:U8} suggests that the cluster size dependence is very small for the clusters we have studied, especially for the case with an incipient band. The value of the $T_c$ might change slightly in the thermodynamic limit but the overall picture seem to be the same, i.e the $T_c$ decreases once the system has an incipient band. 
 
-%\begin{figure*}
-%\centering
-%\includegraphics[scale=0.4]{Temp_parquest_incipient_common.png}
-%\caption{}
-%\label{fig:parqincipient}
-%\end{figure*}
+\begin{thebibliography}{}
+\bibitem{KreiselSymmetry2020}
+A. Kreisel, P. J. Hirschfeld, and B. M. Andersen, On the Remarkable Superconductivity of FeSe and Its Close Cousins, Symmetry {\bf 12}, 1402
+(2020). \url{https://doi.org/10.3390/sym12091402}
 
-%\begin{figure}
-%\centering
-%\includegraphics[scale=0.4]{Temp_Phisp_bulk.png}
-%\caption{}
-%\label{fig:projspmbulk}
-%\end{figure}
+\bibitem{Hsu14262} 
+F.-C. Hsu, J.-Y. Luo, K.-W. Yeh, Kuo-Wei, T.-K. Chen, T.-W. Huang, P. M. Wu, Phillip Y.-C. Lee, Y.-L. Huang, Y.-Y. Chu, D.-C. Yan, M.-K. Wu, {Superconductivity in the {PbO}-type structure {$\alpha$-FeSe}}, {Proceedings of the National Academy of Sciences} {\bf 105}, {14262--14264} (2008). \url{https://doi.org/10.1073/pnas.0807325105}
 
-%\begin{figure}
-%\centering
-%\includegraphics[scale=0.4]{Temp_Phisp_incipient.png}
-%\caption{}
-%\label{fig:projspmincipient}
-%\end{figure}
+\bibitem{WangCPL2012} 
+Q.-Y. Wang, Z. Li, W.-H. Zhang, Z.-C. Zhang, J.-S. Zhang, W. Li, H. Ding, Y.-B. Ou, P. Deng, K. Chang, J. Wen, C.-L. Song, K. He, J.-F. Jia, S.-H. Ji, Y.-Y. Wang, L.-L. Wang, X. Chen, X.-C. Ma,  and Q.-K. Xue, {{Interface-Induced High-Temperature Superconductivity in Single Unit-Cell {FeSe} Films on SrTiO$_3$}}. {Chinese Phys. Lett.} {\bf 29}, 037402 (2012). 
+\url{https://iopscience.iop.org/article/10.1088/0256-307X/29/3/037402/meta}
 
-\bibliography{references}
+\bibitem{NOJI20148} 
+N. Takashi, T. Hatakeda, S. Hosono, T. Kawamata, M. Kato and Y. Koike, {Synthesis and post-annealing effects of alkaline-metal-ethylenediamine-intercalated superconductors 
+{A$_x$(C$_2$H$_8$N$_2$)$_y$Fe$_{2-z}$Se$_2$} ({A = Li, Na}) with {$T_c=45$} K}. {Physica C: Superconductivity and its Applications} {\bf 504}, 8, (2014). \url{https://doi.org/10.1016/j.physc.2014.01.007}
+
+
+\bibitem{BurrardLucasNatMat2013} 
+M. Burrard-Lucas, D. G. Free, S. J. Sedlmaier, J. D. Wright, S. J. Cassidy, Y. Hara, A. J. Corkett, T. Lancaster, P. J. Baker, S. J. Blundell, S. J. Clarke, {Enhancement of the superconducting transition temperature of {FeSe} by intercalation of a molecular spacer layer}. Nature Materials {\bf 12}, 15--19 (2013). \url{https://doi.org/10.1038/nmat3464}
+
+	
+\bibitem{DingPRL2016}
+H. Ding, Y.-F. Lv, K. Zhao, W.-L. Wang, L. Wang, C.-L. Song, X. Chen, X.-C. Ma, Q.-K. Xue, {High-Temperature Superconductivity in Single-Unit-Cell {FeSe} Films on Anatase {TiO$_{2}(001)$}}. Phys. Rev. Lett. {\bf 117}, 
+067001 (2016). \url{https://link.aps.org/doi/10.1103/PhysRevLett.117.067001}
+
+\bibitem{Liu2012}
+D. Liu, W. Zhang, D. Mou, J. He, Y.-B. Ou, Q.-Y. Wang, Z. Li, L. Wang, L. Zhao, S. He, Y. Peng, X. Liu, C. Chen, L. Yu, G. Liu, X. Dong, J. Zhang, C. Chen, Z. Xu, J. Hu, X. Chen, X. Ma, Q. Xue, X. J. Zhou,c{Electronic origin of high-temperature superconductivity in single-layer {FeSe} superconductor}.
+journal={Nature Communications}, {\bf 3}, 931 (2012). 
+\url{https://doi.org/10.1038/ncomms1946}
+
+\bibitem{He2013}
+S. He, J. He, ,W. Zhang, L. Zhao, D. Liu, X. Liu, D. Mou, Y.-B. Ou, Q.-Y. Wang, Z. Li, L. Wang, Y. Peng, Y. Liu, X. Chen, L. Yu, G. Liu, X. Dong, J. Zhang, C. Chen, Z. Xu, X. Chen, X. Ma, Q. Xue, X. J. Zhou, {Phase diagram and electronic indication of high-temperature superconductivity at {65~K} in single-layer {FeSe} films}, Nature Materials {\bf 12}, 605-610 (2013). \url{https://doi.org/10.1038/nmat3648}
+
+\bibitem{DingNatCommun2013} 
+X. Ding, D. Fang, Z. Wang, H. Yang, J. Liu, Q. Deng, G. Ma, C. Meng, Y. Hu, and H.-H. Wen, {Influence of microstructure on superconductivity in {K$_x$Fe$_{2-y}$Se$_2$} and evidence for a new parent phase {K$_2$Fe$_7$Se$_8$}}. 
+Nature Communications {\bf 4}, 1897 (2013). \url{https://www.nature.com/articles/ncomms2913}
+
+\bibitem{Ge2015} 
+J.-F. Ge, Z.-L. Liu, C. Liu, Canhua, C.-L. Gao, D. Qian, Q.-K. Xue, Y. Liu, J.-F. Jia, Jin-Feng, {Superconductivity above {100~K} in single-layer {FeSe} films on doped {SrTiO$_3$}}. Nature Materials, {\bf 14}, 285-289 (2015). 
+\url{https://doi.org/10.1038/nmat4153}
+
+\bibitem{Shi2017} 
+X. Shi, Z.-Q. Han, X.-L. Peng, P. Richard, T. Qian, X.-X. Wu, M.-W. Qiu, S. C. Wang, J. P. Hu, Y.-J. Sun, H. Ding, {Enhanced superconductivity accompanying a {{Lifshitz}} transition in electron-doped {FeSe} monolayer}. 
+Nature Communications, {\bf 8}, 14988 (2017). \url{https://doi.org/10.1038/ncomms14988}
+
+\bibitem{GuoPRB2010} 
+J. Guo, S. Jin, G. Wang, S. Wang, K. Zhu, T. Zhou, M. He, X. Chen, {Superconductivity in the iron selenide {K$_x$Fe$_2$Se$_2$ ($0 \le x \le 1.0$)}}. Phys. Rev. B {\bf 82}, 180520 (2010). \url{https://link.aps.org/doi/10.1103/PhysRevB.82.180520}
+
+\bibitem{PhysRevB.80.064506} 
+S. Margadonna, Y. Takabayashi, Y. Ohishi, Y. Mizuguchi, Y. Takano, T. Kagayama, T.Nakagawa, M. Takata, and K. Prassides, {Pressure evolution of the low-temperature crystal structure and bonding of the superconductor {FeSe} $({T}_{c}=37\text{ }\text{K})$}. {Phys. Rev. B}, {\bf 80},
+{064506}, (2009). \url{https://link.aps.org/doi/10.1103/PhysRevB.80.064506}
+
+\bibitem{Medvedev2009} 
+S. Medvedev, T. M. McQueen, I. A. Troyan, T. Palasyuk, M. I. Eremets, R. J. Cava, S. Naghavi, F. Casper, V. Ksenofontov, G. Wortmann, C. Felser,
+{Electronic and magnetic phase diagram of {$\beta$-Fe$_{1.01}$Se} with superconductivity at {36.7~K} under pressure}. 
+{Nature Materials} {\bf 8}, 630--633 (2009). \url{https://doi.org/10.1038/nmat2491}
+
+\bibitem{MiyataNatMat2015} 
+Y. Miyata, K. Nakayama, K. Sugawara, T. Sato, and T. Takahashi, {High-temperature superconductivity in potassium-coated multilayer {FeSe} thin films}.  Nature Materials {\bf 14}, 775--779 (2015). \url{https://doi.org/10.1038/nmat4302}
+
+\bibitem{SongPRL2016} 
+C.-L. Song, H.-M. Zhang, Y. Zhong, X.-P. Hu, S.-H. Ji, L. Wang, K. He, X.-C. Ma, Q.-K. Xue, {Observation of Double-Dome Superconductivity in Potassium-Doped {FeSe} Thin Films}. {Phys. Rev. Lett.} {\bf 116}, {157001} (2016). 
+\url{https://link.aps.org/doi/10.1103/PhysRevLett.116.157001}
+
+\bibitem{Krzton_Maziopa_2012}
+A. Krzton-Maziopa, E. V. Pomjakushina, V. Yu. Pomjakushin, F. von Rohr, A. Schilling, and K. Conder. {Synthesis of a new alkali metal--organic solvent intercalated iron selenide superconductor {with $T_c \approx 45$ K}}. 
+Journal of Physics: Condensed Matter {\bf 24}, 382202 (2012). \url{https://doi.org/10.1088/0953-8984/24/38/382202}
+
+\bibitem{Sun2015}
+H. Sun, and D. N. Woodruff, S. J. Cassidy,  G. M. Allcroft, S. J. Sedlmaier, A. L. Thompson, P. A. Bingham, S. D. Forder, S. Cartenet, N. Mary, S. Ramos, F. R. Foronda, B. H. Williams, X. Li, S. J. Blundell, S. J. Clarke, {Soft Chemical Control of Superconductivity in Lithium Iron Selenide Hydroxides {Li$_{1–x}$Fe$_x$(OH)Fe$_{1-y}$Se}}. 
+Inorganic Chemistry {\bf 54}, 1958--1964 (2015). \url{https://pubs.acs.org/doi/10.1021/ic5028702}
+
+\bibitem{LeeNature2014}
+J. J. Lee, F. T. Schmitt, R. G. Moore, S. Johnston, Y.-T. Cui, W. Li, M. Yi, Z. K. Liu, M. Hashimoto, Y. Zhang, D. H. Lu, T. P. Devereaux, D.-H. Lee, Z.-X. Shen, 
+{Interfacial mode coupling as the origin of the enhancement of {T$_c$} in {FeSe} films on {SrTiO$_3$}}. Nature {\bf 515}, {245--248} (2014). \url{https://doi.org/10.1038/nature13894}
+
+\bibitem{Lee2015}
+D.-H. Lee, {What makes the {$T_c$} of {FeSe}/{SrTiO$_3$} so high?}. Chinese Physics B {\bf 24}, {117405} (2015). \url{https://doi.org/10.1088/1674-1056/24/11/117405}
+	
+\bibitem{Rademaker2016} 
+L. Rademaker, Y. Wang, T. Berlijn, and S. Johnston, {Enhanced superconductivity due to forward scattering in {FeSe} thin films on {SrTiO$_3$} substrates}. 
+{New Journal of Physics}, {\bf 18}, 022001 (2016). \url{https://doi.org/10.1088/1367-2630/18/2/022001}
+	
+\bibitem{SongNatureCommun2019}
+Q. Song, T. L. Yu, X. Lou, B. P. Xie, H. C. Xu, C. H. P. Wen, Q. Yao, S. Y. Zhang, X. T. Zhu, J. D. Guo, R. Peng, and D. L. Feng, {Evidence of cooperative effect on the enhanced superconducting transition temperature at the {FeSe}/{SrTiO$_3$} interface}. Nature Communications {\bf 10}, 758 (2019). 
+\url{https://doi.org/10.1038/s41467-019-08560-z}
+
+\bibitem{RademakerEnhanced2021} 
+L. Rademaker, G. Alvarez-Suchini, K. Nakatsukasa, Y. Wang, and S. Johnston, {Enhanced superconductivity in {$\mathrm{Fe}\mathrm{Se}/\mathrm{Sr}\mathrm{Ti}{\mathrm{O}}_{3}$} from the combination of forward scattering phonons and spin fluctuations}. 
+{Phys. Rev. B} {\bf 103}, 144504 (2021). \url{https://link.aps.org/doi/10.1103/PhysRevB.103.144504}
+
+\bibitem{CohHeterostructure}
+S. Coh, D.-H. Lee, S. G. Louie, M. L. Cohen, {Proposal for a bulk material based on a monolayer {FeSe} on {SrTiO$_3$} high-temperature superconductor}. {Phys. Rev. B} {\bf 93}, {245138} (2016). \url{https://doi.org/10.1103/PhysRevB.93.245138},
+
+\bibitem{PengNatureCommun2014} 
+R. Peng, H. C. Xu, S. Y. Tan, H. Y. Cao, M. Xia, X. P. Shen, Z. C. Huang, C. H. P. Wen, Q. Song, T. Zhang, B. P. Xie, X. G. Gong, and D. L. Feng, {Tuning the band structure and superconductivity in single-layer {FeSe} by interface engineering}. Nature Communications {\bf 5}, 5044 (2014). \url{https://doi.org/10.1038/ncomms6044}
+
+\bibitem{Mazin2008}
+I. I. Mazin, D. J. Singh, M. D. Johannes, and M. H. Du, {Unconventional Superconductivity with a Sign Reversal in the Order Parameter of {${\mathrm{LaFeAsO}}_{1\ensuremath{-}x}{\mathrm{F}}_{x}$}}. Phys. Rev. Lett. {\bf 101}, {057003} (2008). \url{https://link.aps.org/doi/10.1103/PhysRevLett.101.057003}
+
+\bibitem{Kuroki2008} 
+K. Kuroki, S. Onari, R. Arita, H. Usui, Y. Tanaka, H. Kontani, and H. Aoki, {Unconventional Pairing Originating from the Disconnected {Fermi} Surfaces of Superconducting {${\mathrm{LaFeAsO}}_{1\ensuremath{-}x}{\mathrm{F}}_{x}$}}. 
+Phys. Rev. Lett. {\bf 101}, 087004,
+(2008). \url{https://link.aps.org/doi/10.1103/PhysRevLett.101.087004}
+
+\bibitem{Hirschfeld_2011}
+P. J. Hirschfeld, M. M. Korshunov, and I. I. Mazin, {Gap symmetry and structure of {Fe}-based superconductors}. {Reports on Progress in Physics} {\bf 74}, {124508}. 
+\url{https://doi.org/10.1088/0034-4885/74/12/124508}
+
+\bibitem{PhysRevB.93.155159} 
+Z. Leong, and P. Phillips, {Effects of Coulomb interactions on the superconducting gaps in iron-based superconductors}. Phys. Rev. B {\bf 93}, 155159 (2016). 
+\url{https://link.aps.org/doi/10.1103/PhysRevB.93.155159}
+
+\bibitem{PhysRevB.91.161108} 
+L.-H. Hu, W.-Q. Chen, and F.-C. Zhang, {Cooper pairing in the insulating valence band in iron-based superconductors}, Phys. Rev. B {\bf 91}, 161108 (2015). \url{https://link.aps.org/doi/10.1103/PhysRevB.91.161108}
+
+\bibitem{BangNJP2014} 
+Y. Bang, {A shadow gap in the over-doped {(Ba$_{1-x}$K$_x$)Fe$_2$As$_2$} compound}. {New Journal of Physics} {\bf 16}, {023029} (2014). \url{https://doi.org/10.1088/1367-2630/16/2/023029},
+
+\bibitem{ChenPRB2015} 
+X. Chen, S. Maiti, A. Linscheid, and P. J. Hirschfeld, P. J., {Electron pairing in the presence of incipient bands in iron-based superconductors}. Phys. Rev. B {\bf 92}, 224514 (2015). \url{https://link.aps.org/doi/10.1103/PhysRevB.92.224514}
+
+\bibitem{Mishra2016} 
+V. Mishra, D. J. Scalapino, T. A. Maier, {s$\pm$ pairing near a {{Lifshitz}} transition}, Scientific Reports {\bf 6}, 32078 (2016). \url{https://doi.org/10.1038/srep32078}
+
+\bibitem{LinscheidPRL2016} 
+A. Linscheid, S. Maiti, Y. Wang, S. Johnston, and P. J. Hirschfeld, {High ${T}_{c}$ via Spin Fluctuations from Incipient Bands: Application to Monolayers and Intercalates of FeSe.} Phys. Rev. Lett., {\bf 117}, {077003} (2016). 
+\url{https://link.aps.org/doi/10.1103/PhysRevLett.117.077003}
+
+\bibitem{KurokiFlex2020} 
+K. Matsumoto, D. Ogura, and K. Kuroki, {Strongly Enhanced Superconductivity Due to Finite Energy Spin Fluctuations Induced by an Incipient Band: A {FLEX} Study on the Bilayer {{Hubbard}} Model with Vertical and Diagonal Interlayer Hoppings}. 
+Journal of the Physical Society of Japan {\bf 89}, 044709 (2020). \url{https://doi.org/10.7566/JPSJ.89.044709}
+
+\bibitem{KurokiVMC2020} 
+D. Kato and K. Kuroki, {Many-variable variational {{Monte Carlo}} study of superconductivity in two-band {Hubbard} models with an incipient band}. {Phys. Rev. Research} {\bf 2}, {023156} (2020). \url{https://link.aps.org/doi/10.1103/PhysRevResearch.2.023156}
+
+\bibitem{Maier2019}
+T. A. Maier, V. Mishra, G. Balduzzi, and D. J. Scalapino, {Effective pairing interaction in a system with an incipient band}. Phys. Rev. B {\bf 99}, 140504 (2019). \url{https://link.aps.org/doi/10.1103/PhysRevB.99.140504}
+
+\bibitem{PhysRevB.97.060501}
+A. Aperis and P. M. Oppeneer, {Multiband full-bandwidth anisotropic {Eliashberg} theory of interfacial electron-phonon coupling and {high-$T_c$} superconductivity in {{FeSe}/SrTiO$_3$}}. Phys. Rev. B {\bf 97}, {060501} (2018). \url{https://link.aps.org/doi/10.1103/PhysRevB.97.060501}
+
+\bibitem{Maier2011}
+T. A. Maier and D. J. Scalapino, {Pair structure and the pairing interaction in a bilayer {Hubbard} model for unconventional superconductivity}. Phys. Rev. B {\bf 84}, {180513} (2011). \url{https://link.aps.org/doi/10.1103/PhysRevB.84.180513}
+
+\bibitem{PelliciariRIXS2020}
+J. Pelliciari, S. Karakuzu, Q. Song, R. Arpaia, A. Nag, M. Rossi, J. Li, T. Yu, C. Tianlun, P. Xiaoyang, R. Peng, M. Garc{\'\i}a-Fern{\'a}ndez, A. C. Walters, Q. Wang, J. Zhao, G. Ghiringhelli, D. Feng, T. A. Maier, K.-J. Zhou, S. Johnston, Steven, and R. Comin, {Evolution of spin excitations from bulk to monolayer {FeSe}}. {Nature Communications} {\bf 12}, 3122 (2021). \url{https://doi.org/10.1038/s41467-021-23317-3}
+
+\bibitem{Jarrell2001}
+M. Jarrell, Th. Maier, C. Huscroft, and S. Moukouri, {Quantum {Monte Carlo} algorithm for nonlocal corrections to the dynamical mean-field approximation}. Phys. Rev. B {\bf 64}, {195130} (2001). 
+\url{https://link.aps.org/doi/10.1103/PhysRevB.64.195130}
+
+\bibitem{Maier_Review}
+T. Maier, M. Jarrell, T. Pruschke, and M. H. Hettler, {Quantum cluster theories}. Rev. Mod. Phys. {\bf 77}, 1027--1080 (2005).  \url{https://link.aps.org/doi/10.1103/RevModPhys.77.1027}
+
+\bibitem{GallNature2021}
+M. Gall, N. Wurz, J. Samland, C. F. Chan, and M. K{\"o}hl, {Competing magnetic orders in a bilayer {Hubbard} model with ultracold atoms}. 
+Nature {\bf 589}, 40--43 (2021). \url{https://doi.org/10.1038/s41586-020-03058-x} 
+
+\bibitem{Gull_2008}
+E. Gull and P. Werner and O. Parcollet and M. Troyer, {Continuous-time auxiliary-field {Monte Carlo} for quantum impurity models}. Europhysics Letters 
+{\bf 82}, 57003 (2008). \url{https://doi.org/10.1209%2F0295-5075%2F82%2F57003}
+
+\bibitem{Gull2011} 
+E. Gull, P. Staar, S. Fuchs, P. Nukala, M. S. Summers, T. Pruschke, T. C. Schulthess, and T. Maier, {Submatrix updates for the continuous-time auxiliary-field algorithm}. Phys. Rev. B {\bf 83}, 75122 (2011). 
+\url{https://link.aps.org/doi/10.1103/PhysRevB.83.075122}
+
+
+\bibitem{HAHNER2019} 
+U. R. H{\"a}hner, G. Alvarez, T. A. Maier, R. Solc{\'a}, P. Staar, M. S. Summers and T. C. Schulthess, {{DCA}++: A software framework to solve correlated electron problems with modern quantum cluster methods}. Computer Physics Communications {\bf 246}, 106709 (2020). \url{http://www.sciencedirect.com/science/article/pii/S0010465519300086}
+
+\bibitem{Maier2006} 
+T. A. Maier, M. S. Jarrell, D. J. Scalapino, {Structure of the Pairing Interaction in the Two-Dimensional {Hubbard} Model}. Phys. Rev. Lett. {\bf 96}, 047005 (2006). \url{https://link.aps.org/doi/10.1103/PhysRevLett.96.047005}
+
+\bibitem{PhysRevResearch.2.033132}
+T. A. Maier, S. Karakuzu, and D. J. Scalapino, {Overdoped end of the cuprate phase diagram}. {Phys. Rev. Research} {\bf 2}, 033132 (2020). 
+\url{https://link.aps.org/doi/10.1103/PhysRevResearch.2.033132}
+
+\bibitem{Gubernatis1991}
+J. E. Gubernatis, M. and Jarrell, R. N. Silver, and D. S. Sivia, {Quantum {Monte Carlo} simulations and maximum entropy: Dynamics from imaginary-time data}. Phys. Rev. B {\bf 44}, {6011--6029} (1991). \url{https://link.aps.org/doi/10.1103/PhysRevB.44.6011}
+
+
+\bibitem{MandalPRL2017}
+S. Mandal, P. Zhang, S. Ismail-Beigi, and K. Haule, {How Correlated is the {$\mathrm{{FeSe}}/{\mathrm{SrTiO}}_{3}$} System?}. Phys. Rev. Lett. {\bf 119}, 067004 (2017). \url{https://link.aps.org/doi/10.1103/PhysRevLett.119.067004}
+
+\bibitem{MaierPRB2009}
+T. A. Maier, S. Graser, D. J. Scalapino, and P. J. Hirschfeld, {Origin of gap anisotropy in spin fluctuation models of the iron pnictides}. Phys. Rev. B 
+{\bf 79}, 224510 (2009). \url{https://link.aps.org/doi/10.1103/PhysRevB.79.224510}
+
+\bibitem{ZhangPRB2009}
+J. Zhang, R. Sknepnek, R. M. Fernandes, and J. Schmalian, {Orbital coupling and superconductivity in the iron pnictides}. Phys. Rev. B {\bf 79}, 220502 (2009). 
+\url{https://link.aps.org/doi/10.1103/PhysRevB.79.220502}
+
+\bibitem{PhysRevLett.100.237001}
+T. A. Maier, D. Poilblanc, and D. J. Scalapino, {Dynamics of the Pairing Interaction in the {{Hubbard}} and {$t\mathrm{\text{\ensuremath{-}}}J$} Models of High-Temperature Superconductors}. Phys. Rev. Lett. {\bf 100}, 237001 (2008). \url{https://link.aps.org/doi/10.1103/PhysRevLett.100.237001}
+
+\bibitem{Maier2016}
+T. A. Maier, P. Staar, V. Mishra, U. Chatterjee, J. C. Campuzano, and D. J. Scalapino, {Pairing in a dry {Fermi} sea}. {Nature Communications}, {\bf 7}, 11875 (2016). \url{https://doi.org/10.1038/ncomms11875}
+
+\bibitem{Maier2018}
+T. A. Maier, {Dynamical Mean Field and Dynamical Cluster Approximation Based Theory of Superconductivity}. {\bf 8}, 13.1--13.29 (J{\"{u}}lich, 2018). 
+
+\bibitem{Maier2019_2}
+T. A. Maier and D. J. Scalapino, Pairfield fluctuations of a {2D} {Hubbard} model. npj Quantum Materials {\bf 4}, 30 (2019). \url{https://doi.org/10.1038/s41535-019-0169-9}
+
+\bibitem{PhysRevLett.75.312}
+N. Trivedi and M. Randeria, {Deviations from Fermi-Liquid Behavior above ${T}_{c}$ in 2D Short Coherence Length Superconductors}, {Phys. Rev. Lett.} {\bf 75}, 312 (1995). 
+\url{https://link.aps.org/doi/10.1103/PhysRevLett.75.312}
+
+\end{thebibliography}
+
 \end{document}
