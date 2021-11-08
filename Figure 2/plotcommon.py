@@ -39,7 +39,7 @@ ax2.set(ylim=(-10,15))
 ax2.set(xticks=[0,nkSeg,2*nkSeg,3*nkSeg],xticklabels=[r"$\Gamma$","M","X",r"$\Gamma$"])
 
 ax2.set_xlabel('$k$', fontsize=28)
-ax1.set_ylabel(r"$\omega$", fontsize=28)
+ax1.set_ylabel(r"$\omega/t$", fontsize=28)
 
 ax2.grid(True,lw=0.25)
 ax2.axhline(y=0,color="red",lw=1,linestyle="-")
