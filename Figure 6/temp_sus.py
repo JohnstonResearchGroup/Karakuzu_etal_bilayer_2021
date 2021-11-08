@@ -52,16 +52,16 @@ colors = prop_cycle.by_key()['color']
 
 
 fig1,ax1 = plt.subplots(figsize=(8,6))
-ax1.plot(omega0,n0[:,1],color=colors[0],label=r"$n=1.05,t_{\perp}=2.3$",marker='o', linewidth=2)
-ax1.plot(omega1,n1[:,1],color=colors[1],label=r"$n=1.10,t_{\perp}=2.3$",marker='^', linewidth=2)
-ax1.plot(omega2,n2[:,1],color=colors[2],label=r"$n=1.15,t_{\perp}=2.3$",marker='s', linewidth=2)
-ax1.plot(omega3,n3[:,1],color=colors[3],label=r"$n=1.15,t_{\perp}=2.8$",marker='p', linewidth=2)
+ax1.plot(omega0,n0[:,1],color=colors[0],label=r"$n=1.05,t_{\perp}=2.3t$",marker='o', linewidth=2)
+ax1.plot(omega1,n1[:,1],color=colors[1],label=r"$n=1.10,t_{\perp}=2.3t$",marker='^', linewidth=2)
+ax1.plot(omega2,n2[:,1],color=colors[2],label=r"$n=1.15,t_{\perp}=2.3t$",marker='s', linewidth=2)
+ax1.plot(omega3,n3[:,1],color=colors[3],label=r"$n=1.15,t_{\perp}=2.8t$",marker='p', linewidth=2)
 
 
 
 
 ax1.set_ylabel(r'$\chi_s(\mathbf{Q}=0)$',fontsize=21)
-ax1.set_xlabel(r'$T$',fontsize=21)
+ax1.set_xlabel(r'$T/t$',fontsize=21)
 ax1.yaxis.tick_left() 
 ax1.yaxis.set_ticks_position('both')
 
