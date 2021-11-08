@@ -38,8 +38,8 @@ ax1.plot(omega0,n1,color=colors[1],label=r"$k_z=\pi$",marker='o', linewidth=2)
 
 
 
-ax1.set_ylabel(r'$\phi_{s\pm}$',fontsize=22)
-ax1.set_xlabel(r'$\omega$',fontsize=22)
+ax1.set_ylabel(r'$\phi_{s^\pm}$',fontsize=22)
+ax1.set_xlabel(r'$\omega/t$',fontsize=22)
 
 
 ax1.yaxis.tick_left() 
@@ -56,7 +56,7 @@ ax1.legend(frameon=True, fontsize=16)
 ax1.set_xlim([-40, 40])
 ax1.set_ylim([-0.03,0.05])
 
-ax1.text(-35, 0.04, r"$(a)$", fontsize=22)
+ax1.text(-38, 0.044, r"$(a)$", fontsize=22)
 
 plt.tight_layout()
 
