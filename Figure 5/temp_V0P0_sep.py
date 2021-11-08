@@ -55,20 +55,20 @@ colors = prop_cycle.by_key()['color']
 
 fig, ((ax1,ax2))= plt.subplots(2,1,figsize=(8,12),sharex=True, sharey=False)
 
-ax1.plot(omega2,n2[:,1]/1000,color=colors[0],label=r"$n=1.05,t_{\perp}=2.3,t_{\perp}^{\prime}=0.0$",marker='p',linestyle='dashed',linewidth=2)
-ax1.plot(omega1,n1[:,1]/1000,color=colors[1],label=r"$n=1.10,t_{\perp}=2.3,t_{\perp}^{\prime}=0.0$",marker='p',linestyle='dashed',linewidth=2)
-ax1.plot(omega0,n3[:,1]/1000,color=colors[2],label=r"$n=1.15,t_{\perp}=2.3,t_{\perp}^{\prime}=0.0$",marker='p',linestyle='dashed',linewidth=2)
-ax1.plot(omega0,n0[:,1]/1000,color=colors[3],label=r"$n=1.15,t_{\perp}=2.8,t_{\perp}^{\prime}=0.0$",marker='p',linestyle='dashed',linewidth=2)
+ax1.plot(omega2,n2[:,1]/1000,color=colors[0],label=r"$n=1.05,t_{\perp}=2.3t,t_{\perp}^{\prime}=0.0$",marker='p',linestyle='dashed',linewidth=2)
+ax1.plot(omega1,n1[:,1]/1000,color=colors[1],label=r"$n=1.10,t_{\perp}=2.3t,t_{\perp}^{\prime}=0.0$",marker='p',linestyle='dashed',linewidth=2)
+ax1.plot(omega0,n3[:,1]/1000,color=colors[2],label=r"$n=1.15,t_{\perp}=2.3t,t_{\perp}^{\prime}=0.0$",marker='p',linestyle='dashed',linewidth=2)
+ax1.plot(omega0,n0[:,1]/1000,color=colors[3],label=r"$n=1.15,t_{\perp}=2.8t,t_{\perp}^{\prime}=0.0$",marker='p',linestyle='dashed',linewidth=2)
 
-ax2.plot(omega2,n2[:,2]*1000,color=colors[0],label=r"$n=1.05,t_{\perp}=2.3,t_{\perp}^{\prime}=0.0$",marker='^',linestyle='dashed',linewidth=2)
-ax2.plot(omega1,n1[:,2]*1000,color=colors[1],label=r"$n=1.10,t_{\perp}=2.3,t_{\perp}^{\prime}=0.0$",marker='^',linestyle='dashed',linewidth=2)
-ax2.plot(omega0,n3[:,2]*1000,color=colors[2],label=r"$n=1.15,t_{\perp}=2.3,t_{\perp}^{\prime}=0.0$",marker='^',linestyle='dashed',linewidth=2)
-ax2.plot(omega0,n0[:,2]*1000,color=colors[3],label=r"$n=1.15,t_{\perp}=2.8,t_{\perp}^{\prime}=0.0$",marker='^',linestyle='dashed',linewidth=2)
-
-
+ax2.plot(omega2,n2[:,2]*1000,color=colors[0],label=r"$n=1.05,t_{\perp}=2.3t,t_{\perp}^{\prime}=0.0$",marker='^',linestyle='dashed',linewidth=2)
+ax2.plot(omega1,n1[:,2]*1000,color=colors[1],label=r"$n=1.10,t_{\perp}=2.3t,t_{\perp}^{\prime}=0.0$",marker='^',linestyle='dashed',linewidth=2)
+ax2.plot(omega0,n3[:,2]*1000,color=colors[2],label=r"$n=1.15,t_{\perp}=2.3t,t_{\perp}^{\prime}=0.0$",marker='^',linestyle='dashed',linewidth=2)
+ax2.plot(omega0,n0[:,2]*1000,color=colors[3],label=r"$n=1.15,t_{\perp}=2.8t,t_{\perp}^{\prime}=0.0$",marker='^',linestyle='dashed',linewidth=2)
 
 
-ax1.set_ylabel(r'$V_{0}(T)[x 10^{-3}]$',fontsize=20)
+
+
+ax1.set_ylabel(r'$V_{s^\pm}(T)~[\times 10^{-3}]$',fontsize=20)
 ax1.yaxis.tick_left() 
 ax1.yaxis.set_ticks_position('both')
 
@@ -84,8 +84,8 @@ ax1.set_xlim([0, 0.2])
 ax1.set_ylim([0.0,4.0])
 
 
-ax2.set_ylabel(r'$P_{0}(T)[x 10^{3}]$',fontsize=20)
-ax2.set_xlabel(r'$T$',fontsize=24)
+ax2.set_ylabel(r'$P_{s^\pm}(T)~[\times 10^{3}]$',fontsize=20)
+ax2.set_xlabel(r'$T/t$',fontsize=24)
 ax2.yaxis.tick_left() 
 ax2.yaxis.set_ticks_position('both')
 
@@ -101,11 +101,11 @@ ax2.set_xlim([0, 0.2])
 ax2.set_ylim([0.0,2.5])
 
 
-ax1.text(0.01, 3.5, r"$(a)$", fontsize=22)
-ax2.text(0.01, 2.2, r"$(b)$", fontsize=22)
+ax1.text(0.003, 3.6, r"$(a)$", fontsize=22)
+ax2.text(0.003, 2.25, r"$(b)$", fontsize=22)
 
 
 
 plt.show()
 
-
+fig.savefig('plot.png')
